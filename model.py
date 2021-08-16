@@ -48,7 +48,7 @@ class User(db.Model):
 
 # Create an instance of the Post table
 class Post(db.Model):
-"""Create instance of table"""
+    """Create instance of table"""
 
     __tablename__ = 'posts'
 
@@ -63,19 +63,21 @@ class Post(db.Model):
 
     post_content = db.Column(db.String(200), 
                       nullable=False, 
-                      unique = True,)                     
+                      unique = True,)  
 
-    # add song, playlist and albums as foreign keys
-    # song_id = db.Column(db.String(), 
-    #                   nullable=False, 
-    #                   unique = True,) 
-    # playlist ID
+    song_id = db.Column(db.Integer, db.ForeignKey("songs.song_id"))
+
+    album_id = db.Column(db.Integer, db.ForeignKey("albums.album_id"))
+
+    playlist_id = db.Column(db.Integer, db.ForeignKey("playlists.playlist_id"))
+
+   
     def __repr__(self):
         return f"<Post post_id={self.post_id} post_content={self.post_content}>"
 
 
 class Song(db.Model):
-"""Create instance of table"""
+    """Create instance of table"""
 
     __tablename__ = 'songs'
 
@@ -83,14 +85,14 @@ class Song(db.Model):
                         primary_key = True,
                         autoincrement=True,)
 
-    song_title = db.Column(db.string(50))
+    song_title = db.Column(db.String(50))
 
     def __repr__(self):
         return f"<Song song_id={self.song_id} song_title={self.song_title}>"
 
 
 class Album(db.Model):
-"""Create instance of table"""
+    """Create instance of table"""
 
     __tablename__ = 'albums'
 
@@ -98,14 +100,14 @@ class Album(db.Model):
                         primary_key = True,
                         autoincrement=True,)
 
-    album_title = db.Column(db.string(50))
+    album_title = db.Column(db.String(50))
 
     def __repr__(self):
         return f"<Album album_id={self.album_id} album_title={self.album_title}>"
 
    
 class Playlist(db.Model):
-"""Create instance of table"""
+    """Create instance of table"""
 
     __tablename__ = 'playlists'
 
@@ -113,7 +115,7 @@ class Playlist(db.Model):
                         primary_key = True,
                         autoincrement=True,)
 
-    playlist_title = db.Column(db.string(50))
+    playlist_title = db.Column(db.String(50))
 
     def __repr__(self):
         return f"<Playlist playlist_id={self.playlist_id} album_title={self.playlist_title}>"
