@@ -69,71 +69,16 @@ class Post(db.Model):
                       nullable=False, 
                       unique = True,)  
 
-    song_id = db.Column(db.Integer, db.ForeignKey("songs.song_id"))
+    spotify_id = db.Column(db.String())
 
-    album_id = db.Column(db.Integer, db.ForeignKey("albums.album_id"))
+    music_title = db.Column(db.String(75))
 
-    playlist_id = db.Column(db.Integer, db.ForeignKey("playlists.playlist_id"))
+    music_type = db.Column(db.String(8))
 
     # user = a list of user objects
 
-    # Create relationships between posts and songs, albums and playlists
-    song = db.relationship("Song")
-
-    album = db.relationship("Album")
-
-    playlist = db.relationship("Playlist")
-
     def __repr__(self):
         return f"<Post post_id={self.post_id} post_content={self.post_content}>"
-
-
-class Song(db.Model):
-    """Create instance of table"""
-
-    __tablename__ = 'songs'
-
-    song_id= db.Column(db.Integer, 
-                        primary_key = True,
-                        autoincrement=True,)
-
-    song_title = db.Column(db.String(50))
-
-
-    def __repr__(self):
-        return f"<Song song_id={self.song_id} song_title={self.song_title}>"
-
-
-class Album(db.Model):
-    """Create instance of table"""
-
-    __tablename__ = 'albums'
-
-    album_id= db.Column(db.Integer, 
-                        primary_key = True,
-                        autoincrement=True,)
-
-    album_title = db.Column(db.String(50))
-
-
-    def __repr__(self):
-        return f"<Album album_id={self.album_id} album_title={self.album_title}>"
-
-   
-class Playlist(db.Model):
-    """Create instance of table"""
-
-    __tablename__ = 'playlists'
-
-    playlist_id= db.Column(db.Integer, 
-                        primary_key = True,
-                        autoincrement=True,)
-
-    playlist_title = db.Column(db.String(50))
-
-
-    def __repr__(self):
-        return f"<Playlist playlist_id={self.playlist_id} album_title={self.playlist_title}>"
 
 
     if __name__ == '__main__':

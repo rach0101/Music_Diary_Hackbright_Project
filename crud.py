@@ -1,4 +1,4 @@
-from model import db, User, Post, Song, Album, Playlist, connect_to_db
+from model import db, User, Post, connect_to_db
 
 def create_user(username, password, spotify_username, token):
     
@@ -10,7 +10,7 @@ def create_user(username, password, spotify_username, token):
 
     return user
 
-def create_post(user_id, date, post_content, song_id, album_id, playlist_id):
+def create_post(user_id, date, post_content, spotify_id, music_title, music_type):
     
     post = Post(user_id=user_id, date=date, post_content=post_content, 
                 song_id=song_id, album_id=album_id, playlist_id=playlist_id)
@@ -19,31 +19,6 @@ def create_post(user_id, date, post_content, song_id, album_id, playlist_id):
     db.session.commit()
 
     return post
-
-def create_song(song_title):
-    song = Song(song_title=song_title)
-
-    db.session.add(song)
-    db.session.commit()
-
-    return song
-
-def create_album(album_title):
-    album = Album(album_title=album_title)
-
-    db.session.add(album)
-    db.session.commit()
-
-    return album
-
-def create_playlist(playlist_title):
-    playlist = Playlist(playlist_title=playlist_title)
-
-    db.session.add(playlist)
-    db.session.commit()
-
-    return playlist
-
 
 if __name__ == '__main__':
     from server import app
