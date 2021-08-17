@@ -1,7 +1,9 @@
 from model import db, User, Post, Song, Album, Playlist, connect_to_db
 
 def create_user(username, password, spotify_username, token):
-    user = User(username=username, password=password, spotify_username=spotify_username, token=token)
+    
+    user = User(username=username, password=password, 
+                spotify_username=spotify_username, token=token)
 
     db.session.add(user)
     db.session.commit()
@@ -9,7 +11,9 @@ def create_user(username, password, spotify_username, token):
     return user
 
 def create_post(user_id, date, post_content, song_id, album_id, playlist_id):
-    post = Post(user_id=user_id, date=date, post_content=post_content, song_id=song_id, album_id=album_id, playlist_id=playlist_id)
+    
+    post = Post(user_id=user_id, date=date, post_content=post_content, 
+                song_id=song_id, album_id=album_id, playlist_id=playlist_id)
 
     db.session.add(post)
     db.session.commit()
