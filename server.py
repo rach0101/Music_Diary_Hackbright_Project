@@ -29,16 +29,20 @@ def login_user():
             #flash to user that they logged in
             session['user_id'] = user.user_id
             flash("Logged in successfully")
-            # print("ahyooo you are a user!")
             return render_template('diary.html')
         else:
             #If pasword is incorrect flash notification
-            # print("Ayoooooo your password is wrong!")
             flash("Password is incorrect!")
     else:
         flash("This account doesn't exist, please create an account")
 
     return redirect('/')
+
+@app.route('/create_account')
+def create_account():
+    """Create a New Account"""
+
+    return render_template('create_account.html')
 
 if __name__ == '__main__':
     connect_to_db(app)
