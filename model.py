@@ -43,6 +43,10 @@ class User(db.Model):
                       nullable=False, 
                       unique = True,)  
 
+    # create relationship between users and posts
+
+    post = db.relationship("Post", backref="users")
+
     def __repr__(self):
         return f"<User user_id={self.user_id} username={self.username}>"
 
@@ -71,7 +75,15 @@ class Post(db.Model):
 
     playlist_id = db.Column(db.Integer, db.ForeignKey("playlists.playlist_id"))
 
-   
+    # user = a list of user objects
+
+    # Create relationships between posts and songs, albums and playlists
+    song = db.relationship("Song")
+
+    album = db.relationship("Album")
+
+    playlist = db.relationship("Playlist")
+
     def __repr__(self):
         return f"<Post post_id={self.post_id} post_content={self.post_content}>"
 
@@ -86,6 +98,7 @@ class Song(db.Model):
                         autoincrement=True,)
 
     song_title = db.Column(db.String(50))
+
 
     def __repr__(self):
         return f"<Song song_id={self.song_id} song_title={self.song_title}>"
@@ -102,6 +115,7 @@ class Album(db.Model):
 
     album_title = db.Column(db.String(50))
 
+
     def __repr__(self):
         return f"<Album album_id={self.album_id} album_title={self.album_title}>"
 
@@ -116,6 +130,7 @@ class Playlist(db.Model):
                         autoincrement=True,)
 
     playlist_title = db.Column(db.String(50))
+
 
     def __repr__(self):
         return f"<Playlist playlist_id={self.playlist_id} album_title={self.playlist_title}>"
