@@ -1,5 +1,6 @@
 from model import db, User, Post, connect_to_db
 
+# Create Users and Posts
 def create_user(username, password, spotify_username, token):
     
     user = User(username=username, password=password, 
@@ -19,6 +20,19 @@ def create_post(user_id, date, post_content, spotify_id, music_title, music_type
     db.session.commit()
 
     return post
+
+# Queries for users and accounts
+def get_users():
+    """Return a list of user records"""
+    
+    return User.query.get(user_id)
+
+def get_user_by_username(username):
+    """Return a user object by username"""
+
+    user = User.query.filter(User.username == username).first()
+
+    return user
 
 if __name__ == '__main__':
     from server import app
