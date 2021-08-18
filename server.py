@@ -41,8 +41,27 @@ def login_user():
 @app.route('/create_account')
 def create_account():
     """Create a New Account"""
-
+  
     return render_template('create_account.html')
+
+@app.route('/create_new_account', methods=["POST"])
+def create_new_account():
+    """Create a New Account"""
+    username = request.form.get('username')
+    password = request.form.get('password')
+    spotify_username = request.form.get('spotify_username')
+    token = request.form.get('token')
+
+    user = crud.get_user_by_username(username)
+
+    if user:
+        flash("This account already exists")
+        
+    else:
+        user = crud.create_user(username, password, spotify_username, token)
+        flash("Account created, please log in")
+
+    return redirect('/')
 
 if __name__ == '__main__':
     connect_to_db(app)
