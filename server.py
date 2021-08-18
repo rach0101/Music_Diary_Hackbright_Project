@@ -15,6 +15,13 @@ def home():
 
     return render_template('home.html')
 
+@app.route('/diary')
+def diary():
+    """View Diary"""
+    # at some point I will want to get name from session and display greeting
+    
+    return render_template('diary.html')
+
 @app.route('/login', methods=["POST"])
 def login_user():
     """Retrieve username and password from login page"""
@@ -28,6 +35,7 @@ def login_user():
         if password == user.password:
             #flash to user that they logged in
             session['user_id'] = user.user_id
+            # session['username'] = user.username
             flash("Logged in successfully")
             return render_template('diary.html')
         else:
