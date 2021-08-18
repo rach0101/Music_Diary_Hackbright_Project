@@ -22,6 +22,19 @@ def diary():
     
     return render_template('diary.html')
 
+@app.route('/diary_api_search', methods=["POST"])
+def diary_api_search():
+    """Grab data from search form and call api"""
+    music_search = request.form.get('music_search')
+    # test that we are grabbing the correct data
+    flash(music_search)
+   
+    # grab data from form
+    # parse data if needed 
+    # use request library for call to api
+    # find out which endpoint I am using
+    return redirect('/diary')
+
 @app.route('/login', methods=["POST"])
 def login_user():
     """Retrieve username and password from login page"""
@@ -37,7 +50,7 @@ def login_user():
             session['user_id'] = user.user_id
             # session['username'] = user.username
             flash("Logged in successfully")
-            return render_template('diary.html')
+            return redirect('/diary')
         else:
             #If pasword is incorrect flash notification
             flash("Password is incorrect!")
@@ -48,18 +61,18 @@ def login_user():
 
 @app.route('/create_account')
 def create_account():
-    """Create a New Account"""
+    """Create a New Account and Display Form"""
   
     return render_template('create_account.html')
 
 @app.route('/create_new_account', methods=["POST"])
 def create_new_account():
-    """Create a New Account"""
+    """When Form is Submitted Create a New Account"""
     username = request.form.get('username')
     password = request.form.get('password')
     spotify_username = request.form.get('spotify_username')
     token = request.form.get('token')
-
+    # query database to see if use exists
     user = crud.get_user_by_username(username)
 
     if user:
