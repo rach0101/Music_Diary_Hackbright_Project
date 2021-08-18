@@ -2,8 +2,10 @@
 
 from flask import Flask, jsonify, render_template, request, flash, session, redirect
 from model import connect_to_db
-import crud
+import crud 
 from jinja2 import StrictUndefined
+import spotipy, requests
+from spotipy.oauth2 import SpotifyClientCredentials
 
 app = Flask(__name__)
 app.secret_key = "dev"
@@ -25,11 +27,13 @@ def diary():
 @app.route('/diary_api_search', methods=["POST"])
 def diary_api_search():
     """Grab data from search form and call api"""
+    # grab search data from form
     music_search = request.form.get('music_search')
     # test that we are grabbing the correct data
     flash(music_search)
    
-    # grab data from form
+    # req = requests.get('https://api.spotify.com/v1/search')
+    
     # parse data if needed 
     # use request library for call to api
     # find out which endpoint I am using
