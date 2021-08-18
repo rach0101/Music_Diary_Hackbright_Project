@@ -4,12 +4,19 @@ from flask import Flask, jsonify, render_template, request, flash, session, redi
 from model import connect_to_db
 import crud 
 from jinja2 import StrictUndefined
-import spotipy, requests
+import spotipy, requests, os
 from spotipy.oauth2 import SpotifyClientCredentials
+# os.system("source secrets.sh")
 
 app = Flask(__name__)
 app.secret_key = "dev"
+# app.secret_key = os.environ['APP_KEY']
 app.jinja_env.undefined = StrictUndefined
+
+# add Spotipy auth
+auth_manager = SpotifyClientCredentials()
+sp = spotipy.Spotify(auth_manager=auth_manager)
+
 
 @app.route('/')
 def home():
@@ -33,7 +40,9 @@ def diary_api_search():
     flash(music_search)
    
     # req = requests.get('https://api.spotify.com/v1/search')
-    
+    results = sp.search(music_search, limit = 10)
+    for item in results["tracks"]["items"]:
+        flash(item['name'])
     # parse data if needed 
     # use request library for call to api
     # find out which endpoint I am using
