@@ -42,21 +42,34 @@ def diary_api_search():
     # req = requests.get('https://api.spotify.com/v1/search')
     results = sp.search(music_search, limit = 1)
     for item in results["tracks"]["items"]:
-        # get song name
-        print(item['name'])
-        print("******************")
-        # get artist name
-        print(item['artists'][0]['name'])
+        
+        print(item['artists'])
+
+        # working code below (not all correct data)
+        # # get song name
+        # print(item['name'])
+        
+        # get link to song
+        # print(item['external_urls'])
         
         print("******************")
-        # get album name
-        print(item['album']['artists'][0]['name']) 
-        print("******************")
-        # get album art
-        print(item['album']['images'][0]['url'])
+        # get artist names
+        # for artist in item['artists']:
+        #     print(artist['name'])
+        
+        # print("******************")
+        # # get album name
+        # print(item['album']['name']) 
+        
+        # print("******************")
+        # # get album art
+        # print(item['album']['images'][0]['url'])
 
         # print(item['external_urls'])
         # print(item.keys())
+    
+    #********** TO DO ********************
+
     # parse data if needed 
     # use request library for call to api
     # find out which endpoint I am using
