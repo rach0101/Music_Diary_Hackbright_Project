@@ -12,11 +12,7 @@
 
   <body>
       <!-- Where body is customized and added -->
-        {% for message in get_flashed_messages() %}
-          <p class="flash-message">     
-            {{ message }}
-          </p>
-        {% endfor %}
+        
      
     {% block body %}Body Content Goes Here{% endblock %}
   </body>

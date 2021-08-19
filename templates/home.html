@@ -9,6 +9,14 @@
 <!-- body content here -->
 <h1>Welcome to your new Music Diary!</h1>
 <p>Login Below</p>
+
+{% for message in get_flashed_messages() %}
+          <p class="flash-message">     
+            {{ message }}
+          </p>
+{% endfor %}
+
+
 <form action="/login" method="POST"> 
     <p>
         Username <input type="text" name="username">
