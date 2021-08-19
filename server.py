@@ -3,6 +3,7 @@
 from flask import Flask, jsonify, render_template, request, flash, session, redirect
 from model import connect_to_db
 import crud 
+import json 
 from jinja2 import StrictUndefined
 import spotipy, requests, os
 from spotipy.oauth2 import SpotifyClientCredentials
@@ -36,13 +37,14 @@ def diary_api_search():
     """Grab data from search form and call api"""
     # grab search data from form
     music_search = request.form.get('music_search')
-    # test that we are grabbing the correct data
-    flash(music_search)
    
     # req = requests.get('https://api.spotify.com/v1/search')
     results = sp.search(music_search, limit = 5)
     for item in results["tracks"]["items"]:
-        flash(item['name'])
+        song_name = item['name']
+        album_art =item['album']['images'][2]['url']
+
+        flash(song_name)
         # print(item['artists'])
 
         # working code below (not all correct data)
@@ -62,8 +64,13 @@ def diary_api_search():
         print(item['album']['name']) 
         
         print("******************")
-        # get album art
+        # get large album art
         print(item['album']['images'][0]['url'])
+
+        print("******************")
+        # get small album art
+        print(item['album']['images'][2]['url'])
+
 
         # print(item['external_urls'])
         # print(item.keys())
@@ -73,7 +80,8 @@ def diary_api_search():
     # parse data if needed 
     # use request library for call to api
     # find out which endpoint I am using
-    return redirect('/diary')
+    # json.stringify return (JSON.stringify) 
+    return jsonify(results["tracks"]["items"])
 
 @app.route('/login', methods=["POST"])
 def login_user():
