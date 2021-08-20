@@ -14,7 +14,7 @@ $(document).ready( () => {
      
             console.log(response.name);
           
-            $('#search_results').append(`<div> ${response.name} </div>`);
+            $('#search_results').append(`<div> <a href="${response.external_urls.spotify}">${response.name} </a></div>`);
             
         });
     });
