@@ -40,7 +40,7 @@ def get_api_search():
     music_search = request.form.get('name')
     print("******************")
     print(music_search)
-    results = sp.search(music_search, limit = 5)
+    results = sp.search(music_search, limit = 1)
     for item in results["tracks"]["items"]:
         song_name = item['name']
         album_art =item['album']['images'][2]['url']
@@ -70,9 +70,14 @@ def get_api_search():
         print("******************")
         # get small album art
         print(item['album']['images'][2]['url'])
-    
-    return jsonify(results["tracks"]["items"])
-    # return jsonify(music_search)
+        
+        print("***____________________*****") 
+        print(jsonify(results["tracks"]["items"]))
+        print(results)
+        
+
+    return jsonify(results["tracks"]["items"][0])
+
 
 @app.route('/login', methods=["POST"])
 def login_user():

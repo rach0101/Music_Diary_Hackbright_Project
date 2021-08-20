@@ -10,12 +10,12 @@ $(document).ready( () => {
         const data = {"name": $("#music_search_input").val()};
 
         $.post('/diary_api.json', data, (response) => {
-            const update = "";
+            console.log((response));
+     
+            console.log(response.name);
+          
+            $('#search_results').append(`<div> ${response.name} </div>`);
             
-            for(const element in response) {
-                update.concat("<div> ${element.name} </div>");
-                $('#search_results').html(update);
-            };  
         });
     });
 });
