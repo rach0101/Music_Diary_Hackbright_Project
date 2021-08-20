@@ -1,19 +1,25 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>
-      {% block title %}Title Goes Here{% endblock %}
-    </title>
-    <!-- This is where any additions to head will be added -->
-    {% block head %}{% endblock %}
-  </head>
 
-  <body>
-      <!-- Where body is customized and added -->
-        
-     
-    {% block body %}Body Content Goes Here{% endblock %}
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>
+    {% block title %}Title Goes Here{% endblock %}
+  </title>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous">
+    </script>
+  {% block head %}{% endblock %}
+
+
+</head>
+
+<body>
+  <!-- Where body is customized and added -->
+
+
+  {% block body %}Body Content Goes Here{% endblock %}
+</body>
+
 </html>
