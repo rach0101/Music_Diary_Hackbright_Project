@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}User Login - Music Diary{% endblock %}
+
+{% block body %}
+<!-- body content here -->
+
+{% for message in get_flashed_messages() %}
+          <p class="flash-message">     
+            {{ message }}
+          </p>
+{% endfor %}
+
+<h1>Welcome! You are one step closer to creating your new Music Diary!</h1>
+<p>Create Account Below</p>
+<form action="/create_new_account" method="POST"> 
+    
+    <p>
+        Username <input type="text" name="username">
+    </p>
+
+    <p>
+        Password <input type="password" name="password">
+    </p>
+
+    <p>
+        Spotify Username <input type="text" name="spotify_username">
+    </p>
+
+    <p>
+        Token <input type="text" name="token">
+    </p>
+
+    <p>
+        <input type="submit">
+    </p>
+</form>
+
+
+
+
+
+{% endblock %}

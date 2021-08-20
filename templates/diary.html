@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Diary{% endblock %}
+{% block head %} <script src="static/js/diary.js"> </script>{% endblock %}
+{% block body %}
+<!-- body content here -->
+<h1>My Diary</h1>
+
+<p>Hello!</p>
+
+<form id="music_search"> 
+    <p> 
+        <p>
+            <input type="text" placeholder="What are you listening to today?" id="music_search_input">
+        </p>
+
+        <p>
+            <input type="submit" value="Submit">
+        </p>
+
+    </p>
+</form>
+<!-- Create divs to hold clickable elements from search -->
+<div id="search_results">
+
+</div>
+
+
+<ul>
+    {% for message in get_flashed_messages() %}
+      <li><img src="https://i.scdn.co/image/ab67616d000048515de832bb499a6e74eea59617"> {{ message }}</li>
+      
+    {% endfor %}
+</ul>
+
+{% endblock %}
