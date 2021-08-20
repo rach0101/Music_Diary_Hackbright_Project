@@ -45,9 +45,6 @@ def get_api_search():
         song_name = item['name']
         album_art =item['album']['images'][2]['url']
 
-        flash(song_name)
-        # print(item['artists'])
-
         # get song name
         print(item['name'])
         

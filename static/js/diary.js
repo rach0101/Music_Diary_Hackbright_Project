@@ -14,7 +14,12 @@ $(document).ready( () => {
      
             console.log(response.name);
           
-            $('#search_results').append(`<div> <a href="${response.external_urls.spotify}">${response.name} </a></div>`);
+            $('#search_results').append(
+                            `<div> 
+                                <img src="${response.album.images[2].url}">
+                                <a href="${response.external_urls.spotify}">${response.name} </a>
+                            </div>`);
+            
             
         });
     });
