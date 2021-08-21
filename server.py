@@ -51,29 +51,30 @@ def get_api_search():
         # get link to song
         print(item['external_urls'])
         
-        print("******************")
         # get artist names
-        for artist in item['artists']:
-            print(artist['name'])
+        # for artist in item['artists']:
+        #     print(artist['name'])
         
-        print("******************")
-        # # get album name
-        print(item['album']['name']) 
+        # # # get album name
+        # print(item['album']['name']) 
         
-        print("******************")
-        # get large album art
-        print(item['album']['images'][0]['url'])
+        # # get large album art
+        # print(item['album']['images'][0]['url'])
 
+        # # get small album art
+        # print(item['album']['images'][2]['url'])
         print("******************")
-        # get small album art
-        print(item['album']['images'][2]['url'])
-        
-        print("***____________________*****") 
-        print(jsonify(results["tracks"]["items"]))
-        print(results)
-        
-        # jsonify(results["tracks"]["items"][0])
+
     return jsonify(results["tracks"]["items"])
+
+# Create an @app route that grabs selected response and sends to the front end
+# in a post
+
+# @app.route('/diary_api.json', methods=['POST'])
+# def get_api_search():
+#     """Grab selected item from search results and send to front end"""
+    
+    # add code here
 
 
 @app.route('/login', methods=["POST"])

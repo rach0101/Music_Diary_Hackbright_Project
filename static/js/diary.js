@@ -17,19 +17,21 @@ $(document).ready( () => {
                 console.log(element.name);
                 $('#search_results').append(
                                 `<div>
-                                    <button id="${element.uri}"> 
+                                    <input type="radio" name="select_song">
+                                    <label id="${element.uri}"> 
                                         <img src="${element.album.images[2].url}">
                                         <a href="${element.external_urls.spotify}">${element.name} </a>
-                                    </button>
+                                    </label>
+                                    
                                 </div>`);
                                 
-            };    
+            };  
+            $('#search_results').append(
+                `<div>
+                    <input type="submit" value="post song">
+                </div>`);  
         });
     });
 });
- // add event listener to div element?
-$('button').on('click', (event) =>   {
-    event.preventDefault();
-    $('#new_post').append(`<div>I am a new post!</div>`);
-});
+
 
