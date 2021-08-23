@@ -38,8 +38,7 @@ def get_api_search():
    
     # grab search data from form
     music_search = request.form.get('name')
-    print("******************")
-    print(music_search)
+    
     results = sp.search(music_search, limit = 5)
     for item in results["tracks"]["items"]:
         song_name = item['name']
@@ -63,19 +62,26 @@ def get_api_search():
 
         # # get small album art
         # print(item['album']['images'][2]['url'])
-        print("******************")
+        # print("******************")
 
     return jsonify(results["tracks"]["items"])
 
 # Create an @app route that grabs selected response and sends to the front end
 # in a post
 
-# @app.route('/diary_api.json', methods=['POST'])
-# def get_api_search():
-#     """Grab selected item from search results and send to front end"""
+@app.route('/get_song_post', methods=['POST'])
+def get_song_selected():
+    """Grab selected item from search results and send to front end"""
     
-    # add code here
+    song_name_posted = request.form.get('name')
+    song_img_posted = request.form.get('img_link')
+    song_link_posted = request.form.get('song_play_link')
+    
+    print("**********HERE IS THE SONG ************")
+    print(song_name_posted)
+    print(song_img_posted)
 
+    return song_posted
 
 @app.route('/login', methods=["POST"])
 def login_user():

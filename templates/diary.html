@@ -1,30 +1,44 @@
 {% extends 'base.html' %}
 
 {% block title %}Diary{% endblock %}
-{% block head %} <script src="static/js/diary.js"> </script>{% endblock %}
+
+{% block head %} <script src="static/js/diary.js"> </script>
+<link rel="stylesheet" href="static/styles.css">
+{% endblock %}
+
 {% block body %}
 <!-- body content here -->
 <h1>My Diary</h1>
 
 <p>Hello!</p>
 
-<form id="music_search"> 
-    <p> 
-        <p>
-            <input type="text" placeholder="What are you listening to today?" id="music_search_input">
-        </p>
+<div id="post">
+    <form id="music_search"> 
+        <p> 
+            <p>
+                <input type="text" placeholder="What are you listening to today?" id="music_search_input">
+            </p>
 
-        <p>
-            <input type="submit" value="Submit">
-        </p>
+            <p>
+                <input type="submit" value="Submit">
+            </p>
 
-    </p>
-    
-</form>
-<p id="new_post"> Post Placeholder </p>
-<!-- Create divs to hold clickable elements from search -->
+        </p>
+    </form id="post_song" action="/get_song_post" method="POST">
+</div>  
 <form id="search_results">
 
 </form>
 
+<div id="post">
+    <img src="https://i.scdn.co/image/ab67616d0000485133b8541201f1ef38941024be">
+    <a href="https://open.spotify.com/track/0lx2cLdOt3piJbcaXIV74f">Willow, Taylor Swift </a>
+    <p> I love this song! </p>
+</div>  
+
+<div id="post">
+    <img src="https://i.scdn.co/image/ab67616d0000485133b8541201f1ef38941024be">
+    <a href="https://open.spotify.com/track/0lx2cLdOt3piJbcaXIV74f">Willow, Taylor Swift </a>
+    <p> Listening to Willow on repeat!!!! </p>
+</div>  
 {% endblock %}
