@@ -71,23 +71,24 @@ def get_api_search():
 def save_post_to_database():
     """Grab selected item from search results and send to front end"""
     music_title = request.form.get('name')
-    song_url = request.form.get('url')
-    song_img = request.form.get('img')
+    music_url = request.form.get('url')
+    music_img = request.form.get('img')
     spotify_id = request.form.get('id')
-    song_img = request.form.get('img')
     post_content = request.form.get('post_content')
     date = datetime.now()
 
+    
+
     # print(song_name + " " + song_url + " " + post_content)
     # print(date)
-    
+
     # Crete function in crud
     # grab user id from session
     # how do i grab the date??
     # setting music type to song
     # make sure to add img and url to database
 
-    post = crud.create_post(session['user_id'], date, post_content, spotify_id, music_title)
+    post = crud.create_post(session['user_id'], date, post_content, spotify_id, music_title, music_img, music_url)
     flash("new post just created!")
     
     return render_template('diary.html')

@@ -75,6 +75,10 @@ class Post(db.Model):
 
     music_type = db.Column(db.String(8))
 
+    music_img = db.Column(db.String())
+
+    music_url = db.Column(db.String())
+
     # user = a list of user objects
 
     def __repr__(self):
