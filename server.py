@@ -27,9 +27,16 @@ def home():
 
 @app.route('/diary')
 def diary():
-    """View Diary"""
+    """View Diary and return all posts"""
     
-    return render_template('diary.html')
+    if session['user_id']:
+        user_id = session['user_id']
+        posts = crud.get_posts_by_user_id(user_id)
+
+    # if user is in session
+    # render user's song posts
+
+    return render_template('diary.html', posts = posts)
 
 
 @app.route('/diary_api.json', methods=['POST'])
@@ -76,17 +83,6 @@ def save_post_to_database():
     spotify_id = request.form.get('id')
     post_content = request.form.get('post_content')
     date = datetime.now()
-
-    
-
-    # print(song_name + " " + song_url + " " + post_content)
-    # print(date)
-
-    # Crete function in crud
-    # grab user id from session
-    # how do i grab the date??
-    # setting music type to song
-    # make sure to add img and url to database
 
     post = crud.create_post(session['user_id'], date, post_content, spotify_id, music_title, music_img, music_url)
     flash("new post just created!")
