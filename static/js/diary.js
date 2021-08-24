@@ -80,7 +80,7 @@ $(document).ready(() => {
         // update hidden values on form to send to server
         $('#song_name').val(post_song_data.name);
         $('#song_url').val(post_song_data.url);
-        $('#song_img').val(post_song_data.img;
+        $('#song_img').val(post_song_data.img);
         $('#song_id').val(post_song_data.id);
     }); 
 });

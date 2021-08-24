@@ -27,7 +27,6 @@ def home():
 @app.route('/diary')
 def diary():
     """View Diary"""
-    # at some point I will want to get name from session and display greeting
     
     return render_template('diary.html')
 
@@ -66,29 +65,27 @@ def get_api_search():
 
     return jsonify(results["tracks"]["items"])
 
-# Create an @app route that grabs selected response and sends to the front end
-# in a post
-
-@app.route('/get_song_post', methods=['POST'])
-def get_song_selected():
+# Create a route that grabs data form form and saves to database
+@app.route('/save_song_to_database', methods=['POST'])
+def save_post_to_database():
     """Grab selected item from search results and send to front end"""
-    
-    song_name_posted = request.form.get('name')
-    song_img_posted = request.form.get('img_link')
-    song_link_posted = request.form.get('song_play_link')
-    
-    print("**********HERE IS THE SONG ************")
-    print(song_name_posted)
-    print(song_img_posted)
+    song_name = request.form.get('name')
+    song_url = request.form.get('url')
+    song_img = request.form.get('img')
+    song_id = request.form.get('id')
+    song_img = request.form.get('img')
+    post_content = request.form.get('post_content')
 
-    return song_posted
+    print("****************************")
+    print(song_name + " " + song_url + " " + post_content)
+    return render_template('diary.html')
 
 @app.route('/login', methods=["POST"])
 def login_user():
     """Retrieve username and password from login page"""
     username = request.form.get('username')
     password = request.form.get('password')
-
+    
     user = crud.get_user_by_username(username)
 
     if user:
