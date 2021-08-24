@@ -6,6 +6,7 @@ import crud
 from jinja2 import StrictUndefined
 import spotipy, requests, os
 from spotipy.oauth2 import SpotifyClientCredentials
+from datetime import datetime
 # os.system("source secrets.sh")
 
 app = Flask(__name__)
@@ -69,15 +70,26 @@ def get_api_search():
 @app.route('/save_song_to_database', methods=['POST'])
 def save_post_to_database():
     """Grab selected item from search results and send to front end"""
-    song_name = request.form.get('name')
+    music_title = request.form.get('name')
     song_url = request.form.get('url')
     song_img = request.form.get('img')
-    song_id = request.form.get('id')
+    spotify_id = request.form.get('id')
     song_img = request.form.get('img')
     post_content = request.form.get('post_content')
+    date = datetime.now()
 
-    print("****************************")
-    print(song_name + " " + song_url + " " + post_content)
+    # print(song_name + " " + song_url + " " + post_content)
+    # print(date)
+    
+    # Crete function in crud
+    # grab user id from session
+    # how do i grab the date??
+    # setting music type to song
+    # make sure to add img and url to database
+
+    post = crud.create_post(session['user_id'], date, post_content, spotify_id, music_title)
+    flash("new post just created!")
+    
     return render_template('diary.html')
 
 @app.route('/login', methods=["POST"])

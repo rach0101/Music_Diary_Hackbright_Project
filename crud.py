@@ -11,10 +11,13 @@ def create_user(username, password, spotify_username, token):
 
     return user
 
-def create_post(user_id, date, post_content, spotify_id, music_title, music_type):
+def create_post(user_id, date, post_content, spotify_id, music_title, music_type="song"):
     
     post = Post(user_id=user_id, date=date, post_content=post_content, 
-                song_id=song_id, album_id=album_id, playlist_id=playlist_id)
+                spotify_id=spotify_id, music_title=music_title, music_type=music_type)
+
+                # post = Post(user_id=user_id, date=date, post_content=post_content, 
+                # song_id=song_id, album_id=album_id, playlist_id=playlist_id)
 
     db.session.add(post)
     db.session.commit()
