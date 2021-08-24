@@ -28,18 +28,19 @@ $(document).ready(() => {
                 song_data[element.id] = {
                     'name': element.name,
                     'url': element.external_urls.spotify,
-                    'img': element.album.images[2].url
+                    'img': element.album.images[2].url,
+                    'id': element.id
                 };
 
                 $('#search_results').append(
                     // make id the value            
-                                `<div>
-                                    <input type="radio" name="select_song" value="${element.id}">
-                                    <label id="${element.uri}" for="${element.name}"> 
-                                        <img src="${element.album.images[2].url}">
-                                        <a href="${element.external_urls.spotify}">${element.name} </a>
-                                    </label>            
-                                </div>`);
+                    `<div>
+                        <input type="radio" name="select_song" value="${element.id}">
+                        <label id="${element.uri}" for="${element.name}"> 
+                            <img src="${element.album.images[2].url}">
+                            <a href="${element.external_urls.spotify}">${element.name} </a>
+                        </label>            
+                    </div>`);
             };
             $('#search_results').append(
                 `<div>
@@ -51,8 +52,10 @@ $(document).ready(() => {
 
     // Write post request that sends radio selection to server
     $('#search_results').on('submit', (event) => {
-        // serialize form to an array to grab results
-        console.log($('#search_results').serializeArray());
+        // serialize form to an array to grab song id
+        let selected_song_id = $('#search_results').serializeArray()[0].value;
+        
+        console.log(selected_song_id);
 
         event.preventDefault();
 
@@ -60,10 +63,25 @@ $(document).ready(() => {
         $('#search_results').empty();
 
         // grab id from serialzed array and lookup song info
+        let post_song_data = song_data[selected_song_id];
+        console.log(post_song_data);
+
         // populate a form at the top of the page so the user can make 
         // diary entry
-
-        // this form will then post to the server
+        $('#song_data').append(
+            `<div>
+                <input type="hidden" name="posted_song" value="${post_song_data.id}">
+                <label id="${post_song_data.id}" for="${post_song_data.name}"> 
+                    <img src="${post_song_data.img}">
+                    <a href="${post_song_data.url}">${post_song_data.name} </a>
+                </label>            
+            </div>`
+        );
+        // update hidden values on form to send to server
+        $('#song_name').val(post_song_data.name);
+        $('#song_url').val(post_song_data.url);
+        $('#song_img').val(post_song_data.img;
+        $('#song_id').val(post_song_data.id);
     }); 
 });
 

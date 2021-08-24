@@ -1,6 +1,14 @@
 
-#post {
+.post {
     border: 2px solid black; 
     border-radius: 25px;
+    
+}
+
+
+
+#music_comment {
+    width: 300px;
+    
 }
 

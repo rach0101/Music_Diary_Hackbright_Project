@@ -12,31 +12,55 @@
 
 <p>Hello!</p>
 
-<div id="post">
-    <form id="music_search"> 
-        <p> 
-            <p>
-                <input type="text" placeholder="What are you listening to today?" id="music_search_input">
-            </p>
+<div id="create_post" class="post">
+    
+    <div id="song_data"> 
+        <!-- song name, link and image are stored here -->
+    </div>
+   
+    <div>
+        <form id="music_search"> 
+            <p> 
+                <p>
+                    <input type="text" placeholder="What are you listening to today?" id="music_search_input">
+                </p>
 
-            <p>
-                <input type="submit" value="Submit">
-            </p>
+                <p>
+                    <input type="submit" value="Submit">
+                </p>
 
-        </p>
-    </form id="post_song" action="/get_song_post" method="POST">
-</div>  
+            </p>
+        </form>
+    </div>
+
+    <div id="music_comment"> 
+        <form> 
+            <!-- add hidden input fields here where i can save values 
+            to send to the server -->
+            <input type="hidden" id="song_name" name="name" value="id">
+            <input type="hidden" id="song_url" name="url" value="id">
+            <input type="hidden" id="song_img" name="img" value="id">
+            <input type="hidden" id="song_id" name="id" value="id">
+
+            <input type="text" name="comment" placeholder="Type music commentary here!">
+            <input type="submit" value="submit post">
+        </form>
+    </div>
+
+</div> 
+
+
 <form id="search_results">
 
 </form>
 
-<div id="post">
+<div class="post">
     <img src="https://i.scdn.co/image/ab67616d0000485133b8541201f1ef38941024be">
     <a href="https://open.spotify.com/track/0lx2cLdOt3piJbcaXIV74f">Willow, Taylor Swift </a>
     <p> I love this song! </p>
 </div>  
 
-<div id="post">
+<div class="post">
     <img src="https://i.scdn.co/image/ab67616d0000485133b8541201f1ef38941024be">
     <a href="https://open.spotify.com/track/0lx2cLdOt3piJbcaXIV74f">Willow, Taylor Swift </a>
     <p> Listening to Willow on repeat!!!! </p>
