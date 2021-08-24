@@ -1,6 +1,6 @@
 from model import db, User, Post, connect_to_db
 
-# Create Users and Posts
+# Create Users table
 def create_user(username, password, spotify_username, token):
     
     user = User(username=username, password=password, 
@@ -11,6 +11,7 @@ def create_user(username, password, spotify_username, token):
 
     return user
 
+# Create Posts table
 def create_post(user_id, date, post_content, spotify_id, music_title, 
                 music_img, music_url, music_type="song"):
     
@@ -36,6 +37,13 @@ def get_user_by_username(username):
     user = User.query.filter(User.username == username).first()
 
     return user
+
+def get_posts_by_user_id(user_id):
+    """Return all posts with the given user id"""
+
+    posts = Post.query.filter(User.user_id == user_id).all()
+
+    return posts
 
 if __name__ == '__main__':
     from server import app
