@@ -29,13 +29,12 @@ def home():
 def diary():
     """View Diary and return all posts"""
     
+    # if user is in session
+    # render user's song posts
     if session['user_id']:
         user_id = session['user_id']
         posts = crud.get_posts_by_user_id(user_id)
         user = crud.get_user_by_username(session['username'])
-
-    # if user is in session
-    # render user's song posts
 
     return render_template('diary.html', posts = posts, user=user)
 
