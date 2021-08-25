@@ -10,13 +10,10 @@ $(document).ready(() => {
     $('#music_search').on('submit', (event) => {
         // Display results of song search on submit
         event.preventDefault();
+       
+        // Empty DOM of any old search results and refresh with new search
+        $('#search_results').empty(); 
         
-        // If search results are already rendered to the page
-        // delete the old results and refresh with new search
-        if($('#search_results').children().length > 0) {
-            $('#search_results').empty(); 
-        }
-
         const data = { "name": $("#music_search_input").val() };
 
         $.post('/diary_api.json', data, (response) => {
