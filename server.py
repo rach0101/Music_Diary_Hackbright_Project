@@ -29,14 +29,13 @@ def home():
 def diary():
     """View Diary and return all posts"""
     
-    # if user is in session
-    # render user's song posts
+    # if user is in session render user's song posts
     if session['user_id']:
         user_id = session['user_id']
         posts = crud.get_posts_by_user_id(user_id)
-        user = crud.get_user_by_username(session['username'])
+        username = session['username']
 
-    return render_template('diary.html', posts = posts, user=user)
+    return render_template('diary.html', posts = posts, username=username)
 
 
 @app.route('/diary_api.json', methods=['POST'])
@@ -87,7 +86,7 @@ def save_post_to_database():
     post = crud.create_post(session['user_id'], date, post_content, spotify_id, music_title, music_img, music_url)
     flash("new post just created!")
     
-    return render_template('diary.html')
+    return redirect('/diary')
 
 @app.route('/login', methods=["POST"])
 def login_user():

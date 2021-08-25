@@ -16,8 +16,6 @@ $(document).ready(() => {
         $.post('/diary_api.json', data, (response) => {
             // Loop through JSON response data from Spotify API
             // Append 5 songs with links and album art to the DOM
-            // use ajax to 
-            // use type = hidden and .serialize the form to get the correct data
             
             // empty song search dict
             song_data = {};

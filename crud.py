@@ -40,8 +40,9 @@ def get_user_by_username(username):
 
 def get_posts_by_user_id(user_id):
     """Return all posts with the given user id"""
-
-    posts = Post.query.filter(User.user_id == user_id).all()
+   
+    # correct this line of code so that it works correctly
+    posts = Post.query.filter(Post.user_id == user_id).all()
 
     return posts
 
