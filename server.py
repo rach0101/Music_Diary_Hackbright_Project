@@ -32,11 +32,12 @@ def diary():
     if session['user_id']:
         user_id = session['user_id']
         posts = crud.get_posts_by_user_id(user_id)
+        user = crud.get_user_by_username(session['username'])
 
     # if user is in session
     # render user's song posts
 
-    return render_template('diary.html', posts = posts)
+    return render_template('diary.html', posts = posts, user=user)
 
 
 @app.route('/diary_api.json', methods=['POST'])
@@ -102,7 +103,7 @@ def login_user():
         if password == user.password:
             #flash to user that they logged in
             session['user_id'] = user.user_id
-            # session['username'] = user.username
+            session['username'] = user.username
             flash("Logged in successfully")
             return redirect('/diary')
         else:
