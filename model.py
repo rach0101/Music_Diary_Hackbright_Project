@@ -1,6 +1,5 @@
 """Models for Music Diary Project"""
 
-# First step is to complete Model.py
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
@@ -60,7 +59,6 @@ class Post(db.Model):
                         primary_key = True,
                         autoincrement=True,)
 
-    # foreign key
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
 
     date = db.Column(db.DateTime)

@@ -6,10 +6,16 @@
 $(document).ready(() => {
 
     let song_data = {};
-
+    
     $('#music_search').on('submit', (event) => {
         // Display results of song search on submit
         event.preventDefault();
+        
+        // If search results are already rendered to the page
+        // delete the old results and refresh with new search
+        if($('#search_results').children().length > 0) {
+            $('#search_results').empty(); 
+        }
 
         const data = { "name": $("#music_search_input").val() };
 
@@ -47,7 +53,7 @@ $(document).ready(() => {
             console.log(song_data);
         });
     });
-
+    
     // Write post request that sends radio selection to server
     $('#search_results').on('submit', (event) => {
         // serialize form to an array to grab song id

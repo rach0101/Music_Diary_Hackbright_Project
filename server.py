@@ -50,26 +50,6 @@ def get_api_search():
         song_name = item['name']
         album_art =item['album']['images'][2]['url']
 
-        # get song name
-        print(item['name'])
-        
-        # get link to song
-        print(item['external_urls'])
-        
-        # get artist names
-        # for artist in item['artists']:
-        #     print(artist['name'])
-        
-        # # # get album name
-        # print(item['album']['name']) 
-        
-        # # get large album art
-        # print(item['album']['images'][0]['url'])
-
-        # # get small album art
-        # print(item['album']['images'][2]['url'])
-        # print("******************")
-
     return jsonify(results["tracks"]["items"])
 
 # Create a route that grabs data form form and saves to database
@@ -84,7 +64,11 @@ def save_post_to_database():
     date = datetime.now()
 
     post = crud.create_post(session['user_id'], date, post_content, spotify_id, music_title, music_img, music_url)
-    flash("new post just created!")
+    
+    # fix this bug here
+    print("************************")
+    print("************************")
+    print(music_title + " " + spotify_id+ " " + music_url+ " " + music_img + " " + post_content)
     
     return redirect('/diary')
 
