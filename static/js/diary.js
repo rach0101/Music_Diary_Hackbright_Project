@@ -61,6 +61,9 @@ $(document).ready(() => {
         // remove children of search results
         $('#search_results').empty();
 
+        // remove children of search form
+        $('#music_search').empty();
+
         // grab id from serialzed array and lookup song info
         let post_song_data = song_data[selected_song_id];
 
@@ -85,11 +88,11 @@ $(document).ready(() => {
 
     // LEFT OFF HERE
 
-    // $.get('/save_song_to_database', (data), (res)=> {
-    //     $('#user_posts').append(xxxx)
-
-
-    // }) 
+    // $.get('/diary', (posts), (res)=> {
+    //     for (const post of posts){
+    //         $('#user_posts').append(`<div> post placeholder </div>`)
+    //     }    
+    // });
 });
 
 
