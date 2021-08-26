@@ -53,6 +53,7 @@ $(document).ready(() => {
     // Write post request that sends radio selection to server
     $('#search_results').on('submit', (event) => {
         // serialize form to an array to grab song id
+        
         let selected_song_id = $('#search_results').serializeArray()[0].value;
         
         event.preventDefault();
@@ -79,7 +80,16 @@ $(document).ready(() => {
         $('#song_url').val(post_song_data.url);
         $('#song_img').val(post_song_data.img);
         $('#song_id').val(post_song_data.id);
-    }); 
+    });
+    // make Ajax request to the server to grab post data
+
+    // LEFT OFF HERE
+
+    // $.get('/save_song_to_database', (data), (res)=> {
+    //     $('#user_posts').append(xxxx)
+
+
+    // }) 
 });
 
 
