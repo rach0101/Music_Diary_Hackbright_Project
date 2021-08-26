@@ -88,10 +88,11 @@ $(document).ready(() => {
 
     // LEFT OFF HERE
 
-    // $.get('/diary', (posts), (res)=> {
-    //     for (const post of posts){
-    //         $('#user_posts').append(`<div> post placeholder </div>`)
-    //     }    
+    // $.get('/diary', (res)=> {
+    //     console.log(typeof(res));
+    //     // for (const post of posts){
+    //     //     $('#user_posts').append(`<div> post placeholder </div>`)
+    //     // }    
     // });
 });
 

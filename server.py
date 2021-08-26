@@ -64,12 +64,7 @@ def save_post_to_database():
     date = datetime.now()
 
     post = crud.create_post(session['user_id'], date, post_content, spotify_id, music_title, music_img, music_url)
-    
-    # fix this bug here
-    print("************************")
-    print("************************")
-    print(music_title + " " + spotify_id+ " " + music_url+ " " + music_img + " " + post_content)
-    
+     
     return redirect('/diary')
 
 @app.route('/login', methods=["POST"])
