@@ -62,10 +62,9 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
 
     date = db.Column(db.DateTime)
-
+    # updated and made this not a unique value
     post_content = db.Column(db.String(200), 
-                      nullable=False, 
-                      unique = True,)  
+                      nullable=False)  
 
     spotify_id = db.Column(db.String())
 

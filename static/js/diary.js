@@ -4,7 +4,8 @@
 // on submit do get request using ajax
 // give form an id
 $(document).ready(() => {
-
+    // Create an empty dictionary to help handle 
+    // song selection from search
     let song_data = {};
     
     $('#music_search').on('submit', (event) => {
@@ -24,7 +25,6 @@ $(document).ready(() => {
             song_data = {};
 
             for (const element of response) {
-                console.log(element);
 
                 song_data[element.id] = {
                     'name': element.name,
@@ -47,7 +47,6 @@ $(document).ready(() => {
                 `<div>
                     <input type="submit" value="post song">
                 </div>`);
-            console.log(song_data);
         });
     });
     
@@ -56,8 +55,6 @@ $(document).ready(() => {
         // serialize form to an array to grab song id
         let selected_song_id = $('#search_results').serializeArray()[0].value;
         
-        console.log(selected_song_id);
-
         event.preventDefault();
 
         // remove children of search results
@@ -65,7 +62,6 @@ $(document).ready(() => {
 
         // grab id from serialzed array and lookup song info
         let post_song_data = song_data[selected_song_id];
-        console.log(post_song_data);
 
         // populate a form at the top of the page so the user can make 
         // diary entry
