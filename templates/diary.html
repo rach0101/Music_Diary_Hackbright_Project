@@ -12,6 +12,12 @@
 
 <p>Hello {{username}}!</p>
 
+{% for message in get_flashed_messages() %}
+          <p class="flash-message">     
+            {{ message }}
+          </p>
+{% endfor %}
+
 <div id="create_post" class="post">
     
     <div id="song_data"> 

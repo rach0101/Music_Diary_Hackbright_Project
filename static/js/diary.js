@@ -13,9 +13,12 @@ $(document).ready(() => {
         // Empty DOM of any old search results and refresh with new search
         $('#list_of_search_results').empty(); 
         
+        if($('#music_search_input').val() == ""){
+            alert("Please search for a song.");
+        };
         // Create key value pair for name: "song search input"
         const data = { "name": $("#music_search_input").val() };
-
+        
         // Send data (key: value pair) to the server as a post request
         // and retrieve Spotify API response data from server
         $.post('/diary_api.json', data, (response) => {
