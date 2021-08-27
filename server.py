@@ -41,7 +41,10 @@ def login_user():
     user = crud.get_user_by_username(username)
 
     # Check if user exists
-    if user:
+    if username == "" or password == "":
+        flash("Please enter both username and password")
+
+    elif user:
         # Check if password is same as what is stored in database  
         if password == user.password:
             # Store user id and username in session when logged in
@@ -53,10 +56,11 @@ def login_user():
             return redirect('/diary')
         else:
             #If pasword is incorrect flash notification
-            flash("Password is incorrect!")
+            flash("Password is incorrect. Please try again.")
     else:
         # If account does not exist promp user to create an account
-        flash("This account doesn't exist, please create an account")
+        flash("This account doesn't exist, please create an account.")
+    
 
     return redirect('/')
 
