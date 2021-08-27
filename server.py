@@ -18,41 +18,120 @@ app.jinja_env.undefined = StrictUndefined
 auth_manager = SpotifyClientCredentials()
 sp = spotipy.Spotify(auth_manager=auth_manager)
 
-
+# Route to render template of homepage
 @app.route('/')
 def home():
     """View Homepage"""
 
     return render_template('home.html')
 
+# Route to diary homepage where user can log in
+# or create an account
+@app.route('/login', methods=["POST"])
+def login_user():
+    """Retrieve username and password from login page
+        if user already exists log user in, otherwise
+        prompt user to create a new account"""
+
+    # Grab username and password from home.html forms 
+    username = request.form.get('username')
+    password = request.form.get('password')
+    
+    # Get user object from database 
+    user = crud.get_user_by_username(username)
+
+    # Check if user exists
+    if user:
+        # Check if password is same as what is stored in database  
+        if password == user.password:
+            # Store user id and username in session when logged in
+            session['user_id'] = user.user_id
+            session['username'] = user.username
+            #flash to user that they logged in
+            flash("Logged in successfully")
+            # Redirect to diary page upon logging user in
+            return redirect('/diary')
+        else:
+            #If pasword is incorrect flash notification
+            flash("Password is incorrect!")
+    else:
+        # If account does not exist promp user to create an account
+        flash("This account doesn't exist, please create an account")
+
+    return redirect('/')
+
+# Route to render create account template
+@app.route('/create_account')
+def create_account():
+    """Create a New Account and Display Form"""
+  
+    return render_template('create_account.html')
+
+# Route that grabs new account data from form and
+# saves to the Users database as a new user
+@app.route('/create_new_account', methods=["POST"])
+def create_new_account():
+    """When Form is Submitted Create a New Account"""
+
+    # Grab username, password, spotify_username and token 
+    # from create_account.html forms
+    username = request.form.get('username')
+    password = request.form.get('password')
+    spotify_username = request.form.get('spotify_username')
+    token = request.form.get('token')
+    
+    # query database to see if user exists
+    user = crud.get_user_by_username(username)
+
+    # if user exists flash message
+    if user:
+        flash("This account already exists")
+    
+    #if user does not already exist, create a new user 
+    else:
+        user = crud.create_user(username, password, spotify_username, token)
+        flash("Account created, please log in")
+
+    return redirect('/')
+
+# Route to dynamically render each user's diary page
 @app.route('/diary')
 def diary():
     """View Diary and return all posts"""
     
-    # if user is in session render user's song posts
+    #Check if user is in session and render user's song posts
     if session['user_id']:
+        #Get user id and username from session
         user_id = session['user_id']
-        posts = crud.get_posts_by_user_id(user_id)
         username = session['username']
 
+        # Get all user posts from database using crud.py
+        posts = crud.get_posts_by_user_id(user_id)
+        
     return render_template('diary.html', posts = posts, username=username)
 
-
+# Route to grab searched song from AJAX request in diary.js
+# then content is queried into Spotify API to retrieve list
+# of song results from search
 @app.route('/diary_api.json', methods=['POST'])
 def get_api_search():
-    """Grab data from search form and render from api as json"""
+    """Grab search data from form via AJAX post request in diary.js.
+        Request is sending key value pair of {name: "searched song input from form"} 
+        to the server then render search results from Spotify API as json data"""
    
-    # grab search data from form
+    # Get form search content from 'name' key
     music_search = request.form.get('name')
     
+    # save results from Spotipy song search query as variable
     results = sp.search(music_search, limit = 5)
-    for item in results["tracks"]["items"]:
-        song_name = item['name']
-        album_art =item['album']['images'][2]['url']
 
+    # return json data that is ready to be handled on the frontend
     return jsonify(results["tracks"]["items"])
 
-# Create a route that grabs data form form and saves to database
+# Create a route that grabs data form the create post form (form in the #music_comment div in diary.html)
+# and saves song data to database using crud.py
+# song data will be stored in hidden form inputs which have placeholder values that are updated in
+# diary.js. Then server uses get request to grab values from the input fields with the specified IDs.  
 @app.route('/save_song_to_database', methods=['POST'])
 def save_post_to_database():
     """Grab selected item from search results and send to front end"""
@@ -66,55 +145,6 @@ def save_post_to_database():
     post = crud.create_post(session['user_id'], date, post_content, spotify_id, music_title, music_img, music_url)
      
     return redirect('/diary')
-
-@app.route('/login', methods=["POST"])
-def login_user():
-    """Retrieve username and password from login page"""
-    username = request.form.get('username')
-    password = request.form.get('password')
-    
-    user = crud.get_user_by_username(username)
-
-    if user:
-        
-        if password == user.password:
-            #flash to user that they logged in
-            session['user_id'] = user.user_id
-            session['username'] = user.username
-            flash("Logged in successfully")
-            return redirect('/diary')
-        else:
-            #If pasword is incorrect flash notification
-            flash("Password is incorrect!")
-    else:
-        flash("This account doesn't exist, please create an account")
-
-    return redirect('/')
-
-@app.route('/create_account')
-def create_account():
-    """Create a New Account and Display Form"""
-  
-    return render_template('create_account.html')
-
-@app.route('/create_new_account', methods=["POST"])
-def create_new_account():
-    """When Form is Submitted Create a New Account"""
-    username = request.form.get('username')
-    password = request.form.get('password')
-    spotify_username = request.form.get('spotify_username')
-    token = request.form.get('token')
-    # query database to see if use exists
-    user = crud.get_user_by_username(username)
-
-    if user:
-        flash("This account already exists")
-        
-    else:
-        user = crud.create_user(username, password, spotify_username, token)
-        flash("Account created, please log in")
-
-    return redirect('/')
 
 if __name__ == '__main__':
     connect_to_db(app)
