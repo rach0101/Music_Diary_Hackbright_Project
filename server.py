@@ -51,7 +51,7 @@ def login_user():
             session['user_id'] = user.user_id
             session['username'] = user.username
             #flash to user that they logged in
-            flash("Logged in successfully")
+            # flash("Logged in successfully")
             # Redirect to diary page upon logging user in
             return redirect('/diary')
         else:
@@ -86,17 +86,21 @@ def create_new_account():
     
     # query database to see if user exists
     user = crud.get_user_by_username(username)
+    
+    if username == "" or password == "" or spotify_username == "" or token == "":
+        flash("Please complete all fields below.")
 
     # if user exists flash message
-    if user:
+    elif user:
         flash("This account already exists")
     
     #if user does not already exist, create a new user 
     else:
         user = crud.create_user(username, password, spotify_username, token)
         flash("Account created, please log in")
+        return redirect('/')
 
-    return redirect('/')
+    return redirect('/create_account')
 
 # Route to dynamically render each user's diary page
 @app.route('/diary')

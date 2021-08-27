@@ -3,7 +3,9 @@
 {% block title %}User Login - Music Diary{% endblock %}
 
 {% block body %}
-<!-- body content here -->
+
+<h1>Welcome! You are one step closer to creating your new Music Diary!</h1>
+<p>Create Account Below</p>
 
 {% for message in get_flashed_messages() %}
           <p class="flash-message">     
@@ -11,8 +13,6 @@
           </p>
 {% endfor %}
 
-<h1>Welcome! You are one step closer to creating your new Music Diary!</h1>
-<p>Create Account Below</p>
 <form action="/create_new_account" method="POST"> 
     
     <p>
