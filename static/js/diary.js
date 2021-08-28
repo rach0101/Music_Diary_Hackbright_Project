@@ -37,12 +37,13 @@ $(document).ready(() => {
                     'img': element.album.images[2].url,
                     'id': element.id
                 };
-                
+                // $('#list_of_search_results').style.display = "none";
+
                 // Append the 5 songs with links and album art to the DOM
                 // as clickable radio buttons
                 $('#list_of_search_results').append(
                     // Set song ID to form input value            
-                    `<div>
+                    `<div id="radio_selection">
                         <input type="radio" name="select_song" value="${element.id}">
                         <label id="${element.uri}" for="${element.name}"> 
                             <img src="${element.album.images[2].url}">
@@ -50,7 +51,8 @@ $(document).ready(() => {
                         </label>            
                     </div>`);
             };
-            $('#list_of_search_results').append(
+            
+                $('#list_of_search_results').append(
                 `<div>
                     <input type="submit" value="post song">
                 </div>`);
@@ -58,19 +60,43 @@ $(document).ready(() => {
     });
     
     // Write post request that sends radio selection to server
+    
+     // -------------------------------------
+    // ----------Testing code here----------
+    // -------------------------------------
+    // $('input[type=radio]').on('change', (event) => {
+
+    // }) 
+     
     $('#list_of_search_results').on('submit', (event) => {
+       
        
         // Serialize form to an array to grab song id
         // array only displays one result which is the selected song
         let selected_song_id = $('#list_of_search_results').serializeArray()[0].value;
-        
+       
         event.preventDefault();
-
+        
+        // Alert user if no song is selected from search results
+         if ($('input[name=default]:checked').length){
+            // do nothing if radio is checked
+            // {};
+            alert("you DID NOT check a radio button");
+        };
+        //     else {
+        //         console.log("NOOOOO")
+        //         alert("you did not checked a radio button");
+        // };
+        
         // Remove list of radio buttons from search results
         $('#list_of_search_results').empty();
 
         // Remove submit button and search box from song search form
         $('#music_search_form').empty();
+
+        
+        // if($('#music_search_input').val() == ""){
+        //     alert("Please search for a song.");
 
         // Lookup song info using song id from the serialized array
         let post_song_data = song_data[selected_song_id];
