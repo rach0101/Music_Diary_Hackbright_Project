@@ -43,7 +43,7 @@ $(document).ready(() => {
                 $('#list_of_search_results').append(
                     // Set song ID to form input value            
                     `<div class="radio_selection">
-                        <input type="radio" name="select_song" value="${element.id}">
+                        <input type="hidden" name="select_song" value="${element.id}">
                         <label id="${element.uri}" for="${element.name}"> 
                             <img src="${element.album.images[2].url}">
                             <a href="${element.external_urls.spotify}">${element.name} </a>
