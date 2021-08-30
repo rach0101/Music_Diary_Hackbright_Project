@@ -43,7 +43,7 @@ $(document).ready(() => {
                 $('#list_of_search_results').append(
                     // Set song ID to form input value            
                     `<div id="radio_selection">
-                        <input type="radio" name="select_song" value="${element.id}" checked="checked">
+                        <input type="radio" name="select_song" value="${element.id}">
                         <label id="${element.uri}" for="${element.name}"> 
                             <img src="${element.album.images[2].url}">
                             <a href="${element.external_urls.spotify}">${element.name} </a>
@@ -59,9 +59,11 @@ $(document).ready(() => {
     });
     
     // Code to try to get button to submit without submit button
-    // $("input[name=select_song]:radio").change(function(){
-    //     $('#list_of_search_results').submit(); 
-    // })
+    console.log($("input[name=select_song]:radio"));
+    $("input[name=select_song]:radio").click(function(){
+        console.log("i got here");
+        $('#list_of_search_results').submit(); 
+    })
    
      
     $('#list_of_search_results').on('submit', (event) => {

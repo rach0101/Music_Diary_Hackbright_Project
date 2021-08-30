@@ -1,5 +1,9 @@
 from model import db, User, Post, connect_to_db
 
+from flask_sqlalchemy import SQLAlchemy
+
+from sqlalchemy import desc
+
 # Create Users table
 def create_user(username, password, spotify_username, token):
     
@@ -43,6 +47,8 @@ def get_posts_by_user_id(user_id):
    
     # correct this line of code so that it works correctly
     posts = Post.query.filter(Post.user_id == user_id).all()
+
+    # ordered_posts = posts.order_by(desc(post_id))
 
     return posts
 
