@@ -46,11 +46,9 @@ def get_posts_by_user_id(user_id):
     """Return all posts with the given user id"""
    
     # correct this line of code so that it works correctly
-    posts = Post.query.filter(Post.user_id == user_id).all()
+    posts = Post.query.filter(Post.user_id == user_id)
 
-    # ordered_posts = posts.order_by(desc(post_id))
-
-    return posts
+    return posts.order_by(desc(Post.post_id)).all()
 
 if __name__ == '__main__':
     from server import app

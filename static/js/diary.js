@@ -51,11 +51,6 @@ $(document).ready(() => {
                         <input type="submit" value="post song">          
                     </div>`);
             };
-            
-                // $('#list_of_search_results').append(
-                // `<div>
-                //     <input type="submit" value="post song">
-                // </div>`);
         });
     });
      
@@ -73,9 +68,6 @@ $(document).ready(() => {
         // Remove submit button and search box from song search form
         $('#music_search_form').empty();
 
-        
-        // if($('#music_search_input').val() == ""){
-        //     alert("Please search for a song.");
 
         // Lookup song info using song id from the serialized array
         let post_song_data = song_data[selected_song_id];
