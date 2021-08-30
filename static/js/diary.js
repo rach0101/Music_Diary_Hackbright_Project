@@ -42,32 +42,25 @@ $(document).ready(() => {
                 // as clickable radio buttons
                 $('#list_of_search_results').append(
                     // Set song ID to form input value            
-                    `<div id="radio_selection">
+                    `<div class="radio_selection">
                         <input type="radio" name="select_song" value="${element.id}">
                         <label id="${element.uri}" for="${element.name}"> 
                             <img src="${element.album.images[2].url}">
                             <a href="${element.external_urls.spotify}">${element.name} </a>
-                        </label>            
+                        </label> 
+                        <input type="submit" value="post song">          
                     </div>`);
             };
             
-                $('#list_of_search_results').append(
-                `<div>
-                    <input type="submit" value="post song">
-                </div>`);
+                // $('#list_of_search_results').append(
+                // `<div>
+                //     <input type="submit" value="post song">
+                // </div>`);
         });
     });
-    
-    // Code to try to get button to submit without submit button
-    console.log($("input[name=select_song]:radio"));
-    $("input[name=select_song]:radio").click(function(){
-        console.log("i got here");
-        $('#list_of_search_results').submit(); 
-    })
-   
      
     $('#list_of_search_results').on('submit', (event) => {
-       
+    
         // Serialize form to an array to grab song id
         // array only displays one result which is the selected song
         let selected_song_id = $('#list_of_search_results').serializeArray()[0].value;
