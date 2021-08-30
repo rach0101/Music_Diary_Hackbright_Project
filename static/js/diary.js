@@ -37,8 +37,7 @@ $(document).ready(() => {
                     'img': element.album.images[2].url,
                     'id': element.id
                 };
-                // $('#list_of_search_results').style.display = "none";
-
+                
                 // Append the 5 songs with links and album art to the DOM
                 // as clickable radio buttons
                 $('#list_of_search_results').append(
@@ -59,14 +58,10 @@ $(document).ready(() => {
         });
     });
     
-    // Write post request that sends radio selection to server
-    
-     // -------------------------------------
-    // ----------Testing code here----------
-    // -------------------------------------
-    // $('#list_of_search_results').on('change', 'input', function() {
-    //     alert("radio clicked");
-    // });
+    // Code to try to get button to submit without submit button
+    // $("input[name=select_song]:radio").change(function(){
+    //     $('#list_of_search_results').submit(); 
+    // })
    
      
     $('#list_of_search_results').on('submit', (event) => {
@@ -110,6 +105,13 @@ $(document).ready(() => {
         $('#song_url').val(post_song_data.url);
         $('#song_img').val(post_song_data.img);
         $('#song_id').val(post_song_data.id);
+    });
+    
+    // alert user if comment is not included in the text
+    $('#submit_final_post').on('submit', () => {
+        if($('#comment').val() == ""){
+            alert("Please enter a comment.");
+        }
     });
 });
 

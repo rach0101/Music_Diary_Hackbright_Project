@@ -40,7 +40,7 @@
     </div>
 
     <div id="populate_music_post"> 
-        <form action="/save_song_to_database" method="POST"> 
+        <form id="submit_final_post" action="/save_song_to_database" method="POST"> 
             <!-- add hidden input fields here where i can save values 
             to send to the server -->
             <input type="hidden" id="song_name" name="name" value="id">
@@ -48,7 +48,7 @@
             <input type="hidden" id="song_img" name="img" value="id">
             <input type="hidden" id="song_id" name="id" value="id">
 
-            <input type="text" name="post_content" placeholder="Type music commentary here!">
+            <input id="comment" type="text" name="post_content" placeholder="Type music commentary here!">
             <input type="submit" value="submit post">
         </form>
     </div>
