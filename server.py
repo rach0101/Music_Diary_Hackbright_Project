@@ -148,7 +148,7 @@ def save_post_to_database():
     music_img = request.form.get('img')
     spotify_id = request.form.get('id')
     post_content = request.form.get('post_content')
-    date = datetime.now()
+    date = datetime.now().strftime('%m-%d-%Y')
 
     post = crud.create_post(session['user_id'], date, post_content, spotify_id, music_title, music_img, music_url)
      
