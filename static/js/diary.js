@@ -44,7 +44,7 @@ $(document).ready(() => {
                 $('#list_of_search_results').append(
                     // Set song ID to form input value            
                     `<div id="radio_selection">
-                        <input type="radio" name="select_song" value="${element.id}">
+                        <input type="radio" name="select_song" value="${element.id}" checked="checked">
                         <label id="${element.uri}" for="${element.name}"> 
                             <img src="${element.album.images[2].url}">
                             <a href="${element.external_urls.spotify}">${element.name} </a>
@@ -64,29 +64,18 @@ $(document).ready(() => {
      // -------------------------------------
     // ----------Testing code here----------
     // -------------------------------------
-    // $('input[type=radio]').on('change', (event) => {
-
-    // }) 
+    // $('#list_of_search_results').on('change', 'input', function() {
+    //     alert("radio clicked");
+    // });
+   
      
     $('#list_of_search_results').on('submit', (event) => {
-       
        
         // Serialize form to an array to grab song id
         // array only displays one result which is the selected song
         let selected_song_id = $('#list_of_search_results').serializeArray()[0].value;
        
         event.preventDefault();
-        
-        // Alert user if no song is selected from search results
-         if ($('input[name=default]:checked').length){
-            // do nothing if radio is checked
-            // {};
-            alert("you DID NOT check a radio button");
-        };
-        //     else {
-        //         console.log("NOOOOO")
-        //         alert("you did not checked a radio button");
-        // };
         
         // Remove list of radio buttons from search results
         $('#list_of_search_results').empty();
