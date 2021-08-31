@@ -173,13 +173,22 @@ def delete_post():
     """Grab song id from button"""
 
     post_id = request.form.get('post_id')
-    print("**********************")
-    print("**********************")
-    print(session['user_id'])
-    print(post_id)
-    
+   
     post = crud.delete_user_post(session['user_id'], post_id)
      
+    return redirect('/diary')
+
+@app.route('/search', methods=["POST"])
+def search_and_view_other_profiles():
+    """Grab searched username and redirect to that user's profile
+        page"""
+    
+    print("hello")
+
+    profile_search = request.form.get('search')
+    print(type(profile_search))
+    print(profile_search)
+
     return redirect('/diary')
 
 if __name__ == '__main__':

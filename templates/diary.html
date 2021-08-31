@@ -5,7 +5,12 @@
 {% block head %} 
 <link rel="stylesheet" href="static/styles.css">
 {% endblock %}
-
+{% block nav %}
+<form action="/search" method="POST"> 
+    <input type="text" placeholder="search for friends" name="search"> 
+    <input type="submit" value="submit">
+</form>
+{% endblock %}
 {% block body %}
 <!-- body content here -->
 <h1>My Diary</h1>
