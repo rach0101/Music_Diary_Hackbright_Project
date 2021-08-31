@@ -53,7 +53,7 @@ def login_user():
             #flash to user that they logged in
             # flash("Logged in successfully")
             # Redirect to diary page upon logging user in
-            return redirect('/diary')
+            return redirect(f'/diary/{user.username}')
         else:
             #If pasword is incorrect flash notification
             flash("Password is incorrect. Please try again.")
@@ -63,6 +63,31 @@ def login_user():
     
 
     return redirect('/')
+
+@app.route('/diary/<username>')
+def visit_profile(username):
+    """Visit a user's profile"""
+    
+    read_write = username == session['username']
+
+    if read_write:
+    # # Check if user is in session and render user's song posts
+    # if session['user_id']:
+        #Get user id and username from session
+        user_id = session['user_id']
+        username = session['username']
+
+        # Get all user posts from database using crud.py
+        posts = crud.get_posts_by_user_id(user_id)
+    else: 
+        # get user by username
+        user = crud.get_user_by_username(username)
+        # get user id
+        user_id = user.user_id
+        # get posts by id
+        posts = crud.get_posts_by_user_id(user_id)
+
+    return render_template('diary.html', posts = posts, username=username, read_write=read_write)
 
 # route to log user out
 @app.route('/logout')
@@ -115,21 +140,21 @@ def create_new_account():
 
     return redirect('/create_account')
 
-# Route to dynamically render each user's diary page
-@app.route('/diary')
-def diary():
-    """View Diary and return all posts"""
+# # Route to dynamically render each user's diary page
+# @app.route('/diary')
+# def diary():
+#     """View Diary and return all posts"""
     
-    #Check if user is in session and render user's song posts
-    if session['user_id']:
-        #Get user id and username from session
-        user_id = session['user_id']
-        username = session['username']
+#     #Check if user is in session and render user's song posts
+#     if session['user_id']:
+#         #Get user id and username from session
+#         user_id = session['user_id']
+#         username = session['username']
 
-        # Get all user posts from database using crud.py
-        posts = crud.get_posts_by_user_id(user_id)
+#         # Get all user posts from database using crud.py
+#         posts = crud.get_posts_by_user_id(user_id)
         
-    return render_template('diary.html', posts = posts, username=username)
+#     return render_template('diary.html', posts = posts, username=username)
 
 # Route to grab searched song from AJAX request in diary.js
 # then content is queried into Spotify API to retrieve list
@@ -183,13 +208,10 @@ def search_and_view_other_profiles():
     """Grab searched username and redirect to that user's profile
         page"""
     
-    print("hello")
-
     profile_search = request.form.get('search')
-    print(type(profile_search))
-    print(profile_search)
+    user = crud.get_user_by_username(profile_search)
 
-    return redirect('/diary')
+    return redirect(f'/diary/{user.username}')
 
 if __name__ == '__main__':
     connect_to_db(app)
