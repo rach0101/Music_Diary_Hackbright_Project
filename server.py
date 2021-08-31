@@ -64,6 +64,19 @@ def login_user():
 
     return redirect('/')
 
+# route to log user out
+@app.route('/logout')
+def logout_user():
+    """Log user out"""
+    
+    session.clear()
+    # code if you want to check that user logged out
+    # if session.get('user_id'):
+    #     print(session['username'])
+    # else: print("nothing in session")
+    
+    return redirect('/')
+
 # Route to render create account template
 @app.route('/create_account')
 def create_account():
@@ -148,7 +161,7 @@ def save_post_to_database():
     music_img = request.form.get('img')
     spotify_id = request.form.get('id')
     post_content = request.form.get('post_content')
-    date = datetime.now().strftime('%m-%d-%Y')
+    date = datetime.now()
 
     post = crud.create_post(session['user_id'], date, post_content, spotify_id, music_title, music_img, music_url)
      
