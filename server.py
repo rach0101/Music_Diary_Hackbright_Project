@@ -167,6 +167,17 @@ def save_post_to_database():
      
     return redirect('/diary')
 
+# Delete song from database
+@app.route('/delete_post')
+def delete_post():
+    """Grab song id from button"""
+
+    post_id = request.form.get('post_id')
+    
+    post = crud.delete_user_post(session['user_id'], post_id)
+     
+    return redirect('/diary')
+
 if __name__ == '__main__':
     connect_to_db(app)
     app.run(host='0.0.0.0', debug=True)

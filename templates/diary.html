@@ -55,11 +55,16 @@
 </form>
 <div id="user_posts"> 
     {% for post in posts %}
-    <div class="post">
+    <div class="post" id="{{post.post_id}}">
         <img src="{{post.music_img}}">
         <a href="{{post.music_url}}">{{post.music_title}} </a>
         <p> {{post.post_content}}</p>
         <p> {{post.date.strftime('%m-%d-%Y')}}</p>
+        <form action="/delete_post" method="POST"> 
+            <input type="hidden" name="post_id" value="{{post.post_id}}"> 
+            <input type="submit" value="delete"> 
+        </form>
+        <!-- <button href="/delete_post" >Delete Post</button> -->
     </div>  
     {% endfor %}
 </div>

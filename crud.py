@@ -45,10 +45,21 @@ def get_user_by_username(username):
 def get_posts_by_user_id(user_id):
     """Return all posts with the given user id"""
    
-    # correct this line of code so that it works correctly
     posts = Post.query.filter(Post.user_id == user_id)
 
     return posts.order_by(desc(Post.post_id)).all()
+
+# function to get post by user_id and post_id and delete
+def delete_user_post(user_id, post_id):
+    """Return all posts with the given user id and post id
+    then delete"""
+   
+    post = Post.query.filter(Post.user_id == user_id,
+                                Post.post_id == post_id).first()
+    db.session.delete(post)
+    db.session.commit()
+
+    return post
 
 if __name__ == '__main__':
     from server import app
