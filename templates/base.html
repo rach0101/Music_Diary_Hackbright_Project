@@ -10,7 +10,7 @@
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
     crossorigin="anonymous">
   </script>
-  <link rel="stylesheet" href="static/styles.css">
+  
   {% block head %}{% endblock %}
 
 
@@ -21,7 +21,7 @@
   <div> 
     <div>Music Diary</div> 
     {% block nav %}{% endblock %}
-    <a href="/diary"> My Diary</a> 
+    <a href="/diary/<username>"> My Diary</a> 
     <a href="/logout" action="/logout"> Logout</a>
   </div>
 </nav>
