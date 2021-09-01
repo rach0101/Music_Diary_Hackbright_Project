@@ -1,13 +1,16 @@
 'use strict';
 
 $('#login').on('submit', (event) => {
-    
+    event.preventDefault();
 
     if($('#username').val() == "" || $('#password').val() == "") {
-        alert("Please enter both username and password.");
-        event.preventDefault();
+        alert("Please enter both username and password.");   
     }
     else {
-        $('#login').submit();
+        const data = {"username":$("#username").val(), "password": $("#password").val()}
+
+        $.post("/login", data , (res) => {
+            location.href = res["url"];
+        });
     }
 });

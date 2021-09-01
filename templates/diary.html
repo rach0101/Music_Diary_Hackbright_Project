@@ -23,7 +23,7 @@
           </p>
 {% endfor %}
 
-{% if read_write %}
+<!-- {% if read_write %} -->
 <div id="create_post" class="post">
     
     <div id="song_data"> 
@@ -39,6 +39,7 @@
             </p>
         </form>
     </div>
+<!-- {% endif %} -->
 
     <div id="populate_music_post"> 
         <form id="submit_final_post" action="/save_song_to_database" method="POST"> 
@@ -54,7 +55,7 @@
         </form>
     </div>
 </div> 
-{% endif %}
+
 
 <form id="list_of_search_results">
 

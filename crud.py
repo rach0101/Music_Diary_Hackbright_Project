@@ -49,6 +49,7 @@ def get_posts_by_user_id(user_id):
 
     return posts.order_by(desc(Post.post_id)).all()
 
+
 # function to get post by user_id and post_id and delete
 def delete_user_post(user_id, post_id):
     """Return all posts with the given user id and post id
