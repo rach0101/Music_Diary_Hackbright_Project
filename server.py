@@ -71,8 +71,13 @@ def visit_profile(username):
     
     read_write = username == session['username']
     user_id = None
+    # if not read_write:
+    #     user_id = None
 
     print(session['username'])
+    print(username)
+    print(read_write)
+
     if read_write:
 
         #Get user id and username from session
@@ -81,14 +86,16 @@ def visit_profile(username):
     else: 
         # get user by username
         user = crud.get_user_by_username(username)
+    
         print("$"*20)
+        print(username)
         print(user)
         if user != None:
         # get user id
             user_id = user.user_id
         else: 
-            usr = session['username']
-            return redirect(f'/diary/{usr}')
+            username = session['username']
+            return redirect(f'/diary/{username}')
         
     posts = crud.get_posts_by_user_id(user_id)
     
@@ -152,7 +159,10 @@ def get_api_search():
    
     # Get form search content from 'name' key
     music_search = request.form.get('name')
-    
+    print("-------------------------")
+    print("-------------------------")
+    print(request.form.get('name'))
+    print(music_search)
     # save results from Spotipy song search query as variable
     results = sp.search(music_search, limit = 5)
 
@@ -174,8 +184,10 @@ def save_post_to_database():
     date = datetime.now()
 
     post = crud.create_post(session['user_id'], date, post_content, spotify_id, music_title, music_img, music_url)
-     
-    return redirect('/diary')
+    
+    username = session['username']
+
+    return redirect(f'/diary/{username}')
 
 # Delete song from database
 @app.route('/delete_post', methods=['POST'])
@@ -186,7 +198,9 @@ def delete_post():
    
     post = crud.delete_user_post(session['user_id'], post_id)
      
-    return redirect('/diary')
+    username = session['username']
+
+    return redirect(f'/diary/{username}')
 
 @app.route('/search', methods=["POST"])
 def search_and_view_other_profiles():
@@ -195,8 +209,6 @@ def search_and_view_other_profiles():
     
     profile_search = request.form.get('search')
     user = crud.get_user_by_username(profile_search)
-    # print("^"*20)
-    # print(user)
 
     return redirect(f'/diary/{user.username}')
 

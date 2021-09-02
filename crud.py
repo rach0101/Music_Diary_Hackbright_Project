@@ -38,9 +38,14 @@ def get_users():
 def get_user_by_username(username):
     """Return a user object by username"""
 
-    user = User.query.filter(User.username == username).first()
+    if username:
 
-    return user
+        user = User.query.filter(User.username == username).first()
+        return user
+
+    else:
+        return None
+    
 
 def get_posts_by_user_id(user_id):
     """Return all posts with the given user id"""

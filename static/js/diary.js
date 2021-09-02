@@ -9,7 +9,7 @@ $(document).ready(() => {
     $('#music_search_form').on('submit', (event) => {
         
         event.preventDefault();
-       
+        console.log("clicked");
         // Empty DOM of any old search results and refresh with new search
         $('#list_of_search_results').empty(); 
         
@@ -22,7 +22,7 @@ $(document).ready(() => {
         // Send data (key: value pair) to the server as a post request
         // and retrieve Spotify API response data from server
         $.post('/diary_api.json', data, (response) => {
-          
+            console.log("posted");
             // Create empty song search dict for saving 
             // data about a song that will be used in posts
             song_data = {};
@@ -59,6 +59,7 @@ $(document).ready(() => {
         // Serialize form to an array to grab song id
         // array only displays one result which is the selected song
         let selected_song_id = $('#list_of_search_results').serializeArray()[0].value;
+        console.log(selected_song_id);
        
         event.preventDefault();
         
