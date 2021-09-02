@@ -51,7 +51,8 @@ def get_posts_by_user_id(user_id):
     """Return all posts with the given user id"""
    
     posts = Post.query.filter(Post.user_id == user_id)
-
+    print("-------crud.py user_id check 4-------")
+    print(user_id)
     return posts.order_by(desc(Post.post_id)).all()
 
 

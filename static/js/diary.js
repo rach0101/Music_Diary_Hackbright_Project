@@ -42,26 +42,27 @@ $(document).ready(() => {
                 // as clickable radio buttons
                 $('#list_of_search_results').append(
                     // Set song ID to form input value            
-                    `<div class="radio_selection">
-                        <input type="hidden" name="select_song" value="${element.id}">
+                    `<div class="radio_selection" id="select_song" value="${element.id}">
+                        <input type="radio" name="select_song" value="${element.id}">
                         <label id="${element.uri}" for="${element.name}"> 
                             <img src="${element.album.images[2].url}">
                             <a href="${element.external_urls.spotify}">${element.name} </a>
-                        </label> 
-                        <input type="submit" value="post song">          
+                        </label>       
                     </div>`);
             };
+            $('#list_of_search_results').append(`<div> 
+                <input type="submit" value="post song"> 
+            </div>`)
         });
     });
      
     $('#list_of_search_results').on('submit', (event) => {
-    
+        event.preventDefault();
+
         // Serialize form to an array to grab song id
         // array only displays one result which is the selected song
         let selected_song_id = $('#list_of_search_results').serializeArray()[0].value;
         console.log(selected_song_id);
-       
-        event.preventDefault();
         
         // Remove list of radio buttons from search results
         $('#list_of_search_results').empty();

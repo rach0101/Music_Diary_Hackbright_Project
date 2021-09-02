@@ -71,8 +71,6 @@ def visit_profile(username):
     
     read_write = username == session['username']
     user_id = None
-    # if not read_write:
-    #     user_id = None
 
     print(session['username'])
     print(username)
@@ -82,21 +80,26 @@ def visit_profile(username):
 
         #Get user id and username from session
         user_id = session['user_id']
+        print("------get user id from session 1 ------")
+        print(user_id)
        
     else: 
         # get user by username
         user = crud.get_user_by_username(username)
     
-        print("$"*20)
+        print("------get user id from session 2 -----")
+        print(user_id)
         print(username)
         print(user)
+
         if user != None:
         # get user id
             user_id = user.user_id
         else: 
             username = session['username']
             return redirect(f'/diary/{username}')
-        
+    print("------print user id 3 ------")
+    print(user_id)    
     posts = crud.get_posts_by_user_id(user_id)
     
     return render_template('diary.html', posts = posts, username=username, read_write=read_write)
