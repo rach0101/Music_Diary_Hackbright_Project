@@ -23,11 +23,11 @@
 
 <p>Hello {{username}}!</p>
 
-<!-- {% if read_write %} -->
+{% if read_write %}
 <div id="create_post" class="post">
     
     <div id="song_data"> 
-        <!-- song name, link and image are stored here -->
+
     </div>
    
     <div>
@@ -39,7 +39,7 @@
             </p>
         </form>
     </div>
-<!-- {% endif %} -->
+
 
     <div id="populate_music_post"> 
         <form id="submit_final_post" action="/save_song_to_database" method="POST"> 
@@ -60,6 +60,7 @@
 <form id="list_of_search_results">
 
 </form>
+{% endif %}
 <div id="user_posts"> 
     {% for post in posts %}
     <div class="post" id="{{post.post_id}}">
@@ -67,11 +68,13 @@
         <a href="{{post.music_url}}">{{post.music_title}} </a>
         <p> {{post.post_content}}</p>
         <p> {{post.date.strftime('%m-%d-%Y')}}</p>
+
+        {% if read_write %}
         <form action="/delete_post" method="POST"> 
             <input type="hidden" name="post_id" value="{{post.post_id}}"> 
             <input type="submit" value="delete"> 
         </form>
-        <!-- <button href="/delete_post" >Delete Post</button> -->
+        {% endif %}
     </div>  
     {% endfor %}
 </div>
