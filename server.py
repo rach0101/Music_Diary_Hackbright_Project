@@ -39,12 +39,9 @@ def login_user():
 
     # Get user object from database 
     user = crud.get_user_by_username(username)
-    print("----------------------")
-    print("----------------------")
-    print(user)
-    print("----------------------")
-    print("----------------------")
-
+    
+    print(username)
+    print(password)
     # Fix if statement below 
     # if user doesn't exist
     # check if username or password are blank
@@ -54,12 +51,12 @@ def login_user():
     if not user:
         # print(user)
         print("NO USER")
-        if username == "":
-            flash("Please enter both username and password")
-        # elif password == "":
-        #     flash("Please enter both username and password")
-        # else:
-        #     flash("Create a new account")
+        if not username:
+            flash("Please enter a username")
+        elif not password:
+            flash("Please enter a password")
+        else:
+            flash("Create a new account")
 
         return jsonify({"url": '/'})
     else:
