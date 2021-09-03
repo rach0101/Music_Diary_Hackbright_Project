@@ -217,8 +217,12 @@ def search_and_view_other_profiles():
     
     profile_search = request.form.get('search')
     user = crud.get_user_by_username(profile_search)
-
-    return redirect(f'/diary/{user.username}')
+    if user != None:
+        return redirect(f'/diary/{user.username}')
+    else: 
+        flash("Please enter a valid username.")
+        username = session['username']
+        return redirect(f'/diary/{username}')
 
 if __name__ == '__main__':
     connect_to_db(app)
