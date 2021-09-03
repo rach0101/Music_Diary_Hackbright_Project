@@ -1,32 +1,19 @@
-// 'use strict';
-
-// $('#login').on('submit', (event) => {
-//     event.preventDefault();
-
-//     const data = {"username":$("#username").val(), "password": $("#password").val()}
-
-//     console.log(data);
-
-//     $.post("/login", data , (res) => {
-//         location.href = res["url"];
-//     });
-    
-// });
+'use strict';
 
 
-// $('#login').on('submit', (event) => {
-//     event.preventDefault();
+$('#login').on('submit', (event) => {
+    event.preventDefault();
 
-//     if($('#username').val() == "" || $('#password').val() == "") {
+    if($('#username').val() == "" || $('#password').val() == "") {
         
-//         alert("Please enter both a username and password");
-//     }
+        alert("Please enter both a username and password");
+    }
 
-//     else {
-//         const data = {"username":$("#username").val(), "password": $("#password").val()}
+    else {
+        const data = {"username":$("#username").val(), "password": $("#password").val()}
 
-//         $.post("/login", data , (res) => {
-//             location.href = res["url"];
-//         });
-//     }
-// });
+        $.post("/login", data , (res) => {
+            location.href = res["url"];
+        });
+    }
+});
