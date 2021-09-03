@@ -191,14 +191,18 @@ def save_post_to_database():
     date = datetime.now()
     print("-----------------------")
     
-    print(music_title + " " + post_content)
+    print(post_content)
 
     print("-----------------------")
-    
-    post = crud.create_post(session['user_id'], date, post_content, spotify_id, music_title, music_img, music_url)
-    
     username = session['username']
 
+    if post_content == "":
+        flash("please enter post content.")
+        print("don't save this")
+
+    else:
+        post = crud.create_post(session['user_id'], date, post_content, spotify_id, music_title, music_img, music_url)
+    
     return redirect(f'/diary/{username}')
 
 # Delete song from database
