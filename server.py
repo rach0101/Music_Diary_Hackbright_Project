@@ -189,7 +189,12 @@ def save_post_to_database():
     spotify_id = request.form.get('id')
     post_content = request.form.get('post_content')
     date = datetime.now()
+    print("-----------------------")
+    
+    print(music_title + " " + post_content)
 
+    print("-----------------------")
+    
     post = crud.create_post(session['user_id'], date, post_content, spotify_id, music_title, music_img, music_url)
     
     username = session['username']
