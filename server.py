@@ -37,11 +37,15 @@ def login_user():
     username = request.form.get('username')
     password = request.form.get('password')
     
+    print(username)
+    print(password)
+
     # Get user object from database 
     user = crud.get_user_by_username(username)
 
     # Check if user exists
     if username == "" or password == "":
+        
         flash("Please enter both username and password")
 
     elif user:
@@ -203,6 +207,7 @@ def delete_post():
      
     username = session['username']
 
+    # should say return success jsonify...
     return redirect(f'/diary/{username}')
 
 @app.route('/search', methods=["POST"])
