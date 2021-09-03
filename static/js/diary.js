@@ -97,11 +97,11 @@ $(document).ready(() => {
     });
     
     // alert user if comment is not included in the text
-    $('#submit_final_post').on('submit', () => {
-        if($('#comment').val() == ""){
-            alert("Please enter a comment.");
-        }
-    });
+    // $('#submit_final_post').on('submit', () => {
+    //     if($('#comment').val() == ""){
+    //         alert("Please enter a comment.");
+    //     }
+    // });
 });
 
 

@@ -36,9 +36,6 @@ def login_user():
     # Grab username and password from home.html forms 
     username = request.form.get('username')
     password = request.form.get('password')
-    
-    print(username)
-    print(password)
 
     # Get user object from database 
     user = crud.get_user_by_username(username)
@@ -66,7 +63,6 @@ def login_user():
         # If account does not exist promp user to create an account
         flash("This account doesn't exist, please create an account.")
     
-
     return redirect('/')
 
 @app.route('/diary/<username>')
@@ -76,25 +72,14 @@ def visit_profile(username):
     read_write = username == session['username']
     user_id = None
 
-    print(session['username'])
-    print(username)
-    print(read_write)
-
     if read_write:
 
         #Get user id and username from session
         user_id = session['user_id']
-        print("------get user id from session 1 ------")
-        print(user_id)
        
     else: 
         # get user by username
         user = crud.get_user_by_username(username)
-    
-        print("------get user id from session 2 -----")
-        print(user_id)
-        print(username)
-        print(user)
 
         if user != None:
         # get user id
@@ -102,8 +87,7 @@ def visit_profile(username):
         else: 
             username = session['username']
             return redirect(f'/diary/{username}')
-    print("------print user id 3 ------")
-    print(user_id)    
+    
     posts = crud.get_posts_by_user_id(user_id)
     
     return render_template('diary.html', posts = posts, username=username, read_write=read_write)
@@ -166,10 +150,7 @@ def get_api_search():
    
     # Get form search content from 'name' key
     music_search = request.form.get('name')
-    print("-------------------------")
-    print("-------------------------")
-    print(request.form.get('name'))
-    print(music_search)
+   
     # save results from Spotipy song search query as variable
     results = sp.search(music_search, limit = 5)
 
@@ -189,11 +170,7 @@ def save_post_to_database():
     spotify_id = request.form.get('id')
     post_content = request.form.get('post_content')
     date = datetime.now()
-    print("-----------------------")
-    
-    print(post_content)
-
-    print("-----------------------")
+   
     username = session['username']
 
     if post_content == "":
