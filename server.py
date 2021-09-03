@@ -39,13 +39,31 @@ def login_user():
 
     # Get user object from database 
     user = crud.get_user_by_username(username)
+    print("----------------------")
+    print("----------------------")
+    print(user)
+    print("----------------------")
+    print("----------------------")
 
-    # Check if user exists
-    if username == "" or password == "":
-        
-        flash("Please enter both username and password")
+    # Fix if statement below 
+    # if user doesn't exist
+    # check if username or password are blank
+    # if username != "" then print "create new account"
+    # else log user in if password is correct
 
-    elif user:
+    if not user:
+        # print(user)
+        print("NO USER")
+        if username == "":
+            flash("Please enter both username and password")
+        # elif password == "":
+        #     flash("Please enter both username and password")
+        # else:
+        #     flash("Create a new account")
+
+        return jsonify({"url": '/'})
+    else:
+        print("USER FOUND")
         # Check if password is same as what is stored in database  
         if password == user.password:
             # Store user id and username in session when logged in
@@ -56,14 +74,14 @@ def login_user():
             return jsonify({"url": f'/diary/{user.username}'})
             
             # return redirect(f'/diary/{user.username}')
-        else:
-            #If pasword is incorrect flash notification
-            flash("Password is incorrect. Please try again.")
-    else:
-        # If account does not exist promp user to create an account
-        flash("This account doesn't exist, please create an account.")
+    #     else:
+    #         #If pasword is incorrect flash notification
+    #         flash("Password is incorrect. Please try again.")
+    # else:
+    #     # If account does not exist promp user to create an account
+    #     flash("This account doesn't exist, please create an account.")
     
-    return redirect('/')
+    
 
 @app.route('/diary/<username>')
 def visit_profile(username):
