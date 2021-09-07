@@ -61,7 +61,8 @@ def login_user():
             session['username'] = user.username
             # Redirect to diary page upon logging user in 
             return jsonify({"url": f'/diary/{user.username}'})
-        elif not password:
+
+        else:
             flash("Please enter a valid password")
             return jsonify({"url": '/'})
     
