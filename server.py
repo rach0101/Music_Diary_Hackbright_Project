@@ -39,11 +39,12 @@ def login_user():
 
     # Get user object from database 
     user = crud.get_user_by_username(username)
-
+    print(user)
+    print(username)
     if not user:
         if username and not user:
             flash("User does not exist. Please create a new account.")
-        if not username or not password:
+        elif not username or not password:
             flash("Please enter both a username and password")
         # if not username:
         #     flash("Please enter a username")
@@ -58,9 +59,11 @@ def login_user():
             # Store user id and username in session when logged in
             session['user_id'] = user.user_id
             session['username'] = user.username
-            
             # Redirect to diary page upon logging user in 
             return jsonify({"url": f'/diary/{user.username}'})
+        elif not password:
+            flash("Please enter a valid password")
+            return jsonify({"url": '/'})
     
     
 
