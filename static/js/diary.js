@@ -95,13 +95,17 @@ $(document).ready(() => {
         $('#song_img').val(post_song_data.img);
         $('#song_id').val(post_song_data.id);
     });
-    
-    // alert user if comment is not included in the text
-    // $('#submit_final_post').on('submit', () => {
-    //     if($('#comment').val() == ""){
-    //         alert("Please enter a comment.");
-    //     }
-    // });
+
+    // add ajax request to delete post here
+    $('.delete_post').on('submit', (event) => {
+        event.preventDefault();
+        const data = { "post_id": event.target.getAttribute('id') };
+
+        $.post('/delete_post', data, (response) => {
+            console.log(`${response}`)
+            $(`#${response}`).remove();
+        });
+    });
 });
 
 

@@ -77,8 +77,14 @@
         {% if read_write %}
         <!-- give the form a class -->
         <!-- grab id from hidden input user .val() to get the id -->
-        <form action="/delete_post" method="POST"> 
+        
+        <!-- <form class="delete_post" action="/delete_post" method="POST"> 
             <input type="hidden" name="post_id" value="{{post.post_id}}"> 
+            <input type="submit" value="delete"> 
+        </form> -->
+
+        <form class="delete_post" id="{{post.post_id}}"> 
+            <!-- <input class="get_post_id" type="hidden" name="post_id" value="{{post.post_id}}">  -->
             <input type="submit" value="delete"> 
         </form>
         {% endif %}

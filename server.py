@@ -191,13 +191,18 @@ def delete_post():
     """Grab song id from button"""
 
     post_id = request.form.get('post_id')
+    print("&&&&&&&&&&&")
+    print(post_id)
    
     post = crud.delete_user_post(session['user_id'], post_id)
      
     username = session['username']
+    
+    posts = crud.get_posts_by_user_id(session['user_id'])
 
     # should say return success jsonify...
-    return redirect(f'/diary/{username}')
+    return post_id
+    
 
 @app.route('/search', methods=["POST"])
 def search_and_view_other_profiles():
