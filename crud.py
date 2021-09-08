@@ -2,7 +2,7 @@ from model import db, User, Post, Like, connect_to_db
 
 from flask_sqlalchemy import SQLAlchemy
 
-from sqlalchemy import desc
+from sqlalchemy import desc, and_
 
 # Create Users table
 def create_user(username, password, spotify_username, token):
@@ -65,12 +65,18 @@ def delete_user_post(user_id, post_id):
 
 def create_like(poster_user_id, post_id):
     
-    like = Like(poster_user_id = poster_user_id, post_id = post_id)
+    existing_likes = Like.query.filter(and_(Like.post_id == post_id, Like.poster_user_id == poster_user_id)).all()
+    if not existing_likes:
+        like = Like(poster_user_id = poster_user_id, post_id = post_id)
 
-    db.session.add(like)
-    db.session.commit()
+        db.session.add(like)
+        db.session.commit()
 
-    return like
+        return like
+
+    else:
+        print("you have already liked this post")
+        return None
 
 # get likes by post id??
 def get_likes_by_post_id(post_id):
