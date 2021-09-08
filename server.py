@@ -1,5 +1,5 @@
 """Server for Music Diary App"""
-# test
+
 from flask import Flask, jsonify, render_template, request, flash, session, redirect
 from model import connect_to_db
 import crud 
@@ -214,6 +214,15 @@ def search_and_view_other_profiles():
         flash("Please enter a valid username.")
         username = session['username']
         return redirect(f'/diary/{username}')
+
+@app.route('/like_post', methods=["POST"])
+def add_like_to_post():
+    """Get like on click and add to 
+    user's posts"""
+
+    post_id = request.form.get('post_id') 
+    username = session['username']
+    return redirect(f'/diary/{username}')
 
 if __name__ == '__main__':
     connect_to_db(app)

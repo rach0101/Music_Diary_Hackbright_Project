@@ -66,6 +66,7 @@
 
 </form>
 {% endif %}
+
 <div id="user_posts"> 
     {% for post in posts %}
     <div class="post" id="{{post.post_id}}">
@@ -75,17 +76,11 @@
         <p> {{post.date.strftime('%m-%d-%Y')}}</p>
 
         {% if read_write %}
-
         <form class="delete_post" id="{{post.post_id}}"> 
             <input type="submit" value="delete"> 
         </form>
-        <div> 
-            <div>0</div>
-            <button id="{{post.post_id}}">Like</button>
-        </div>
-        
-
         {% endif %}
+        <button type="button" class="like_post" id="{{post.post_id}}"> Like </button>
     </div>  
     {% endfor %}
 </div>

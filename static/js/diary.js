@@ -106,6 +106,18 @@ $(document).ready(() => {
             $(`#${response}`).remove();
         });
     });
+    
+    // add event listener for like button
+    $('.like_post').on('click', (event) => {
+        event.preventDefault();
+        console.log("click");
+        const data = { "post_id": event.target.getAttribute('id') };
+        console.log(data);
+        
+        $.post('/like_post', data, (response) => {
+            // console.log(`${response}`)
+        });
+    });
 });
 
 
