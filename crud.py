@@ -76,7 +76,6 @@ def create_like(poster_user_id, post_id):
         return like
 
     else:
-        print("you have already liked this post")
         return None
 
 # get likes by post id??
