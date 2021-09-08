@@ -18,7 +18,7 @@ def create_user(username, password, spotify_username, token):
 # Create Posts Table
 def create_post(user_id, date, post_content, spotify_id, music_title, 
                 music_img, music_url):
-    
+    # added total likes
     post = Post(user_id=user_id, date=date, post_content=post_content, 
                 spotify_id=spotify_id, music_title=music_title, music_type="song", 
                 music_img=music_img, music_url=music_url)

@@ -16,7 +16,6 @@ def connect_to_db(flask_app, echo=True):
 
     print("Connected to the db!")
 
-# Create an instance of the user table
 class User(db.Model):
     """Create instance of table"""
 
@@ -49,7 +48,7 @@ class User(db.Model):
     def __repr__(self):
         return f"<User user_id={self.user_id} username={self.username}>"
 
-# Create an instance of the Post table
+
 class Post(db.Model):
     """Create instance of table"""
 
@@ -76,11 +75,35 @@ class Post(db.Model):
 
     music_url = db.Column(db.String())
 
+    # added to database so that i can increment total likes on click
+    # total_likes = db.Column(db.Integer)
+
     # user = a list of user objects
 
     def __repr__(self):
         return f"<Post post_id={self.post_id} post_content={self.post_content}>"
 
+class Like(db.Model):
+    """Create instance of a 'like'"""
+
+    __tablename__ = 'likes'
+
+    like_id = db.Column(db.Integer, 
+                        primary_key = True,
+                        autoincrement=True,)
+
+    poster_user_id = db.Column(db.Integer, 
+                        db.ForeignKey("users.user_id"))
+
+    post_id = db.Column(db.Integer, 
+                        db.ForeignKey("posts.post_id"))
+
+    post = db.relationship("Post", backref="likes")
+
+    user = db.relationship("User", backref="likes")
+
+    def __repr__(self):
+        return f"<Like like_id={self.like_id}>"
 
     if __name__ == '__main__':
         from server import app
