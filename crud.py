@@ -42,27 +42,12 @@ def get_user_by_username(username):
     print("------")
     return user
 
-   
-
-# def get_user_by_username(username):
-#     """Return a user object by username"""
-#     print(username)
-#     if username:
-
-#         user = User.query.filter(User.username == username).first()
-#         return user
-
-#     else:
-#         print("no user")
-#         return None
-    
 
 def get_posts_by_user_id(user_id):
     """Return all posts with the given user id"""
    
-    posts = Post.query.filter(Post.user_id == user_id)
-    print("-------crud.py user_id check 4-------")
-    print(user_id)
+    posts = Post.query.filter(Post.user_id == user_id).options(db.joinedload("likes"))
+    
     return posts.order_by(desc(Post.post_id)).all()
 
 
@@ -77,6 +62,8 @@ def delete_user_post(user_id, post_id):
     db.session.commit()
 
     return post
+
+
 
 if __name__ == '__main__':
     from server import app
