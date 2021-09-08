@@ -223,7 +223,7 @@ def add_like_to_post():
     user_id = session['user_id']
     post_id = request.form.get('post_id') 
     like = crud.create_like(user_id, post_id)
-    print(like)
+    # get the number of likes and send to front end
     
     return jsonify(like.like_id)
 

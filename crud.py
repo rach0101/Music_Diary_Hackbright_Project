@@ -72,7 +72,13 @@ def create_like(poster_user_id, post_id):
 
     return like
 
-
+# get likes by post id??
+def get_likes_by_post_id(post_id):
+    """Return all likes with the given post id"""
+   
+    likes = Like.query.filter(Like.post_id == post_id).all()
+    
+    return likes
 
 if __name__ == '__main__':
     from server import app

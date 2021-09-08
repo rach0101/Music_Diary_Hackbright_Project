@@ -80,7 +80,11 @@
             <input type="submit" value="delete"> 
         </form>
         {% endif %}
-        <button type="button" class="like_post" id="{{post.post_id}}"> Like </button>
+        <div>
+            <div id="like_count">0</div>
+            <button type="button" class="like_post" id="{{post.post_id}}"> Like </button>
+        </div>
+        
     </div>  
     {% endfor %}
 </div>
