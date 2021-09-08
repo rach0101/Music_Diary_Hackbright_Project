@@ -225,7 +225,8 @@ def add_like_to_post():
     like = crud.create_like(user_id, post_id)
     # get the number of likes and send to front end
     like_count = crud.get_likes_by_post_id(post_id)
-    return jsonify(len(like_count))
+    return jsonify({"like_count": len(like_count),
+                     "post_id": post_id})
 
 if __name__ == '__main__':
     connect_to_db(app)

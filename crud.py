@@ -66,6 +66,7 @@ def delete_user_post(user_id, post_id):
 def create_like(poster_user_id, post_id):
     
     existing_likes = Like.query.filter(and_(Like.post_id == post_id, Like.poster_user_id == poster_user_id)).all()
+    print(existing_likes)
     if not existing_likes:
         like = Like(poster_user_id = poster_user_id, post_id = post_id)
 

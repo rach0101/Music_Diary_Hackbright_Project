@@ -81,7 +81,7 @@
         </form>
         {% endif %}
         <div>
-            <div id="like_count">{{post.likes|length}}</div>
+            <div id="post_id_for_like_{{post.post_id}}">{{post.likes|length}}</div>
             <button type="button" class="like_post" id="{{post.post_id}}"> Like </button>
         </div>
         
