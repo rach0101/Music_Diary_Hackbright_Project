@@ -63,9 +63,9 @@ def delete_user_post(user_id, post_id):
 
     return post
 
-def create_like(like_id, poster_user_id, post_id):
+def create_like(poster_user_id, post_id):
     
-    like = Like(like_id=like_id, poster_user_id = poster_user_id, post_id = post_id)
+    like = Like(poster_user_id = poster_user_id, post_id = post_id)
 
     db.session.add(like)
     db.session.commit()

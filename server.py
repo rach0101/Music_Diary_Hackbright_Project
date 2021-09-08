@@ -219,10 +219,13 @@ def search_and_view_other_profiles():
 def add_like_to_post():
     """Get like on click and add to 
     user's posts"""
-
-    post_id = request.form.get('post_id') 
     username = session['username']
-    return redirect(f'/diary/{username}')
+    user_id = session['user_id']
+    post_id = request.form.get('post_id') 
+    like = crud.create_like(user_id, post_id)
+    print(like)
+    
+    return jsonify(like.like_id)
 
 if __name__ == '__main__':
     connect_to_db(app)

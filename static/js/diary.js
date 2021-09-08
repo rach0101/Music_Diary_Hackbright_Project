@@ -115,7 +115,7 @@ $(document).ready(() => {
         console.log(data);
         
         $.post('/like_post', data, (response) => {
-            // console.log(`${response}`)
+            console.log(`${response}`)
         });
     });
 });

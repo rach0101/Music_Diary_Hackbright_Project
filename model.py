@@ -75,11 +75,6 @@ class Post(db.Model):
 
     music_url = db.Column(db.String())
 
-    # added to database so that i can increment total likes on click
-    # total_likes = db.Column(db.Integer)
-
-    # user = a list of user objects
-
     def __repr__(self):
         return f"<Post post_id={self.post_id} post_content={self.post_content}>"
 
