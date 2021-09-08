@@ -23,6 +23,7 @@ $(document).ready(() => {
         // and retrieve Spotify API response data from server
         $.post('/diary_api.json', data, (response) => {
             console.log("posted");
+            console.log(response);
             // Create empty song search dict for saving 
             // data about a song that will be used in posts
             song_data = {};

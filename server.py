@@ -155,10 +155,16 @@ def get_api_search():
     music_search = request.form.get('name')
    
     # save results from Spotipy song search query as variable
-    results = sp.search(music_search, limit = 5)
+    results = sp.search(music_search, limit = 5, type="track")
 
     # return json data that is ready to be handled on the frontend
     return jsonify(results["tracks"]["items"])
+
+# if i wanted to add search for albums I think it would be ["albums"]["ites"]
+
+
+
+
 
 # Create a route that grabs data form the create post form (form in the #music_comment div in diary.html)
 # and saves song data to database using crud.py
