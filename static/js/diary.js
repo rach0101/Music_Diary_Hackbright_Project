@@ -110,12 +110,13 @@ $(document).ready(() => {
     // add event listener for like button
     $('.like_post').on('click', (event) => {
         event.preventDefault();
-        console.log("click");
+        // console.log("click");
         const data = { "post_id": event.target.getAttribute('id') };
-        console.log(data);
+        // console.log(data);
         
         $.post('/like_post', data, (response) => {
-            console.log(`${response}`)
+            console.log(`${response}`);
+            $('#like_count').html(`${response}`);
         });
     });
 });
