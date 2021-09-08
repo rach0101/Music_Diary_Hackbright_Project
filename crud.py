@@ -1,4 +1,4 @@
-from model import db, User, Post, connect_to_db
+from model import db, User, Post, Like, connect_to_db
 
 from flask_sqlalchemy import SQLAlchemy
 
@@ -39,7 +39,7 @@ def get_user_by_username(username):
     """Return a user object by username"""
   
     user = User.query.filter(User.username == username).first()
-    print("------")
+    
     return user
 
 
@@ -62,6 +62,15 @@ def delete_user_post(user_id, post_id):
     db.session.commit()
 
     return post
+
+def create_like(like_id, poster_user_id, post_id):
+    
+    like = Like(like_id=like_id, poster_user_id = poster_user_id, post_id = post_id)
+
+    db.session.add(like)
+    db.session.commit()
+
+    return like
 
 
 

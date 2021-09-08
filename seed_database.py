@@ -14,3 +14,4 @@ model.connect_to_db(server.app)
 #use our models and create all the tables
 #in the database
 model.db.create_all()
+
