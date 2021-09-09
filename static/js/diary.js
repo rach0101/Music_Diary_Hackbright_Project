@@ -38,10 +38,8 @@ $(document).ready(() => {
                     
                     
                     if (dict_key == 'albums'){
-                        console.log(element.name);
-                        console.log(element.images[2].url)
                         song_data[element.id] = {
-                            'type': dict_key,
+                            'type': 'album',
                             'name': element.name,
                             'url': element.external_urls.spotify,
                             'img': element.images[2].url,
@@ -54,17 +52,16 @@ $(document).ready(() => {
                                 <input type="radio" name="select_song" value="${element.id}">
                                 <label id="${element.uri}" for="${element.name}"> 
                                     <img src="${element.images[2].url}">
-                                    <a href="${element.external_urls.spotify}">${element.name} </a>
-                                </label>       
+                                    <a href="${element.external_urls.spotify}">${element.name} - album</a>
+                                </label>     
                             </div>`);
                         
                     }
                     else {
-                        console.log(element.name);
-                        console.log(element.album.images[2].url)
+                        console.log(element.type)
                         
                         song_data[element.id] = {
-                            'type': dict_key,
+                            'type': 'song',
                             'name': element.name,
                             'url': element.external_urls.spotify,
                             'img': element.album.images[2].url,
@@ -77,51 +74,11 @@ $(document).ready(() => {
                                 <input type="radio" name="select_song" value="${element.id}">
                                 <label id="${element.uri}" for="${element.name}"> 
                                     <img src="${element.album.images[2].url}">
-                                    <a href="${element.external_urls.spotify}">${element.name} </a>
-                                </label>       
+                                    <a href="${element.external_urls.spotify}">${element.name} - song</a>
+                                </label>          
                             </div>`);
-                    }
-                    
-                // deleted }; below to end for loop
-                
-            
-                
-            // for (const element of response['albums']['items']) {
-            //     console.log(element.name);
-            //     song_data[element.id] = {
-            //         'type': dict_key,
-            //         'name': element.name,
-            //         'url': element.external_urls.spotify,
-            //         'img': element.images[2].url,
-            //         'id': element.id
-            //     };
-            
-            // Use for song printing 
-
-            // Loop through JSON response data from Spotify API
-            // add each song to the song_data dictionary
-            // for (const element of response) {
-
-            //     song_data[element.id] = {
-            //         'name': element.name,
-            //         'url': element.external_urls.spotify,
-            //         'img': element.album.images[2].url,
-            //         'id': element.id
-            //     };
-                
-                    // Append the 5 songs with links and album art to the DOM
-                    // as clickable radio buttons
-                    // $('#list_of_search_results').append(
-                    //     // Set song ID to form input value            
-                    //     `<div class="radio_selection" id="select_song" value="${element.id}">
-                    //         <input type="radio" name="select_song" value="${element.id}">
-                    //         <label id="${element.uri}" for="${element.name}"> 
-                    //             <img src="${element.images[2].url}">
-                    //             <a href="${element.external_urls.spotify}">${element.name} </a>
-                    //         </label>       
-                    //     </div>`);
-                };
-                    
+                    } 
+                };     
             };
             $('#list_of_search_results').append(`<div> 
                         <input type="submit" value="post song"> 
