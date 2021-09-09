@@ -28,16 +28,32 @@ $(document).ready(() => {
             // data about a song that will be used in posts
             song_data = {};
             
+            // Use for album data
+
             // Loop through JSON response data from Spotify API
             // add each song to the song_data dictionary
-            for (const element of response) {
-
+            for (const element of response['albums']) {
+                // console.log(element.name);
+                // console.log(element.album.images[2].url)
                 song_data[element.id] = {
                     'name': element.name,
                     'url': element.external_urls.spotify,
                     'img': element.album.images[2].url,
                     'id': element.id
                 };
+            
+            // Use for song printing 
+
+            // Loop through JSON response data from Spotify API
+            // add each song to the song_data dictionary
+            // for (const element of response) {
+
+            //     song_data[element.id] = {
+            //         'name': element.name,
+            //         'url': element.external_urls.spotify,
+            //         'img': element.album.images[2].url,
+            //         'id': element.id
+            //     };
                 
                 // Append the 5 songs with links and album art to the DOM
                 // as clickable radio buttons
