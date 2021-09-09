@@ -155,8 +155,9 @@ def get_api_search():
     
     # Return a json dictionary of album and track data. There will 
     # be 5 albums and 5 tracks in the response object
-    return jsonify({"tracks": results['tracks']['items'],
-                     "albums": results['tracks']['items']})
+    return jsonify(results)
+    # return jsonify({"tracks": results['tracks']['items'],
+    #                  "albums": results['albums']['items']})
     
 
 
