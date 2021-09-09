@@ -47,6 +47,16 @@ $(document).ready(() => {
                             'img': element.images[2].url,
                             'id': element.id
                         }
+
+                        $('#list_of_search_results').append(
+                            // Set song ID to form input value            
+                            `<div class="radio_selection" id="select_song" value="${element.id}">
+                                <input type="radio" name="select_song" value="${element.id}">
+                                <label id="${element.uri}" for="${element.name}"> 
+                                    <img src="${element.images[2].url}">
+                                    <a href="${element.external_urls.spotify}">${element.name} </a>
+                                </label>       
+                            </div>`);
                         
                     }
                     else {
@@ -101,20 +111,21 @@ $(document).ready(() => {
                 
                     // Append the 5 songs with links and album art to the DOM
                     // as clickable radio buttons
-                    $('#list_of_search_results').append(
-                        // Set song ID to form input value            
-                        `<div class="radio_selection" id="select_song" value="${element.id}">
-                            <input type="radio" name="select_song" value="${element.id}">
-                            <label id="${element.uri}" for="${element.name}"> 
-                                <img src="${element.images[2].url}">
-                                <a href="${element.external_urls.spotify}">${element.name} </a>
-                            </label>       
-                        </div>`);
+                    // $('#list_of_search_results').append(
+                    //     // Set song ID to form input value            
+                    //     `<div class="radio_selection" id="select_song" value="${element.id}">
+                    //         <input type="radio" name="select_song" value="${element.id}">
+                    //         <label id="${element.uri}" for="${element.name}"> 
+                    //             <img src="${element.images[2].url}">
+                    //             <a href="${element.external_urls.spotify}">${element.name} </a>
+                    //         </label>       
+                    //     </div>`);
                 };
-                    $('#list_of_search_results').append(`<div> 
-                        <input type="submit" value="post song"> 
-                    </div>`)
+                    
             };
+            $('#list_of_search_results').append(`<div> 
+                        <input type="submit" value="post song"> 
+                        </div>`)
         });
     });
      
