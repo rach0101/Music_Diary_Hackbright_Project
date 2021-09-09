@@ -86,6 +86,7 @@ $(document).ready(() => {
         });
     });
      
+
     $('#list_of_search_results').on('submit', (event) => {
         event.preventDefault();
 
@@ -124,6 +125,7 @@ $(document).ready(() => {
         $('#song_url').val(post_song_data.url);
         $('#song_img').val(post_song_data.img);
         $('#song_id').val(post_song_data.id);
+        $('#music_type').val(post_song_data.type);
     });
 
     // add ajax request to delete post here

@@ -156,10 +156,7 @@ def get_api_search():
     # Return a json dictionary of album and track data. There will 
     # be 5 albums and 5 tracks in the response object
     return jsonify(results)
-    # return jsonify({"tracks": results['tracks']['items'],
-    #                  "albums": results['albums']['items']})
-    
-
+   
 
 # Create a route that grabs data form the create post form (form in the #music_comment div in diary.html)
 # and saves song data to database using crud.py
@@ -172,9 +169,12 @@ def save_post_to_database():
     music_url = request.form.get('url')
     music_img = request.form.get('img')
     spotify_id = request.form.get('id')
+    music_type = request.form.get('type')
     post_content = request.form.get('post_content')
     date = datetime.now()
-   
+    print("-------------------------")
+    print(music_type)
+
     username = session['username']
 
     if post_content == "":
@@ -182,7 +182,7 @@ def save_post_to_database():
         print("don't save this")
 
     else:
-        post = crud.create_post(session['user_id'], date, post_content, spotify_id, music_title, music_img, music_url)
+        post = crud.create_post(session['user_id'], date, post_content, spotify_id, music_title, music_type, music_img, music_url)
     
     return redirect(f'/diary/{username}')
 
