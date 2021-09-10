@@ -94,7 +94,7 @@ $(document).ready(() => {
                 };     
             };
             $('#list_of_search_results').append(`<div> 
-                        <input type="submit" value="post song"> 
+                        <input type="submit" value="post music"> 
                         </div>`)
 
             console.log(song_data);
