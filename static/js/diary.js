@@ -38,12 +38,14 @@ $(document).ready(() => {
                     
                     
                     if (dict_key == 'albums'){
+                        console.log(element.artists[0].name)
                         song_data[element.id] = {
                             'type': 'album',
                             'name': element.name,
                             'url': element.external_urls.spotify,
                             'img': element.images[2].url,
-                            'id': element.id
+                            'id': element.id,
+                            'artist': element.artists[0].name
                         }
 
                         $('#list_of_search_results').append(
@@ -52,7 +54,7 @@ $(document).ready(() => {
                                 <input type="radio" name="select_song" value="${element.id}">
                                 <label id="${element.uri}" for="${element.name}"> 
                                     <img src="${element.images[2].url}">
-                                    <a href="${element.external_urls.spotify}">${element.name} - album</a>
+                                    <a href="${element.external_urls.spotify}">${element.name} - ${element.artists[0].name} - album</a>
                                 </label>     
                             </div>`);
                         
@@ -65,7 +67,8 @@ $(document).ready(() => {
                             'name': element.name,
                             'url': element.external_urls.spotify,
                             'img': element.album.images[2].url,
-                            'id': element.id
+                            'id': element.id,
+                            'artist': element.artists[0].name
                         }
 
                         $('#list_of_search_results').append(
@@ -74,7 +77,7 @@ $(document).ready(() => {
                                 <input type="radio" name="select_song" value="${element.id}">
                                 <label id="${element.uri}" for="${element.name}"> 
                                     <img src="${element.album.images[2].url}">
-                                    <a href="${element.external_urls.spotify}">${element.name} - song</a>
+                                    <a href="${element.external_urls.spotify}">${element.name} - ${element.artists[0].name} - song</a>
                                 </label>          
                             </div>`);
                     } 
