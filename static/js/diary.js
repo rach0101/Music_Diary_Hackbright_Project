@@ -28,12 +28,14 @@ $(document).ready(() => {
             // Create empty song search dict for saving 
             // data about a song that will be used in posts
             song_data = {};
+            const ordered_response = {'tracks': response['tracks'], 'albums': response['albums']}
+            console.log(ordered_response);
 
             // Loop through JSON response data from Spotify API
             // add each song to the song_data dictionary
-            for (const dict_key in response){
+            for (const dict_key in ordered_response){
 
-                for (const element of response[dict_key]['items']){
+                for (const element of ordered_response[dict_key]['items']){
                     
                     
                     if (dict_key == 'albums'){
@@ -94,6 +96,7 @@ $(document).ready(() => {
             $('#list_of_search_results').append(`<div> 
                         <input type="submit" value="post song"> 
                         </div>`)
+
             console.log(song_data);
         });
     });
