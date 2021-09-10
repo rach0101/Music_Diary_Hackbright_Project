@@ -23,10 +23,16 @@
 
 {% endblock %}
 {% block body %}
-<!-- body content here -->
+
+{% if read_write %}
 <h1>My Diary</h1>
 
 <p>Hello {{username}}!</p>
+
+{% else %}
+<h1>{{username}}'s Diary</h1>
+
+{% endif %}
 
 {% if read_write %}
 <div id="create_post" class="post">
