@@ -39,6 +39,8 @@ $(document).ready(() => {
                     
                     if (dict_key == 'albums'){
                         console.log(element.artists[0].name)
+                        console.log(element.artists[0].external_urls.spotify)
+
                         song_data[element.id] = {
                             'type': 'album',
                             'name': element.name,
@@ -55,7 +57,7 @@ $(document).ready(() => {
                                 <label id="${element.uri}" for="${element.name}"> 
                                     <img src="${element.images[2].url}">
                                     <a href="${element.external_urls.spotify}">${element.name}</a>
-                                    <div>${element.artists[0].name}</div>
+                                    <a href="${element.artists[0].external_urls.spotify}">${element.artists[0].name}</a>
                                     <div> album </div>
                                 </label>     
                             </div>`);
@@ -63,7 +65,8 @@ $(document).ready(() => {
                     }
                     else {
                         console.log(element.type)
-                        
+                        console.log(element.artists[0].external_urls.spotify)
+
                         song_data[element.id] = {
                             'type': 'song',
                             'name': element.name,
@@ -80,7 +83,7 @@ $(document).ready(() => {
                                 <label id="${element.uri}" for="${element.name}"> 
                                     <img src="${element.album.images[2].url}">
                                     <a href="${element.external_urls.spotify}">${element.name}</a>
-                                        <div>${element.artists[0].name}</div>
+                                        <a href="href="${element.artists[0].external_urls.spotify}">${element.artists[0].name}</a>
                                         <div> song </div>
                                 </label>          
                             </div>`);
