@@ -54,7 +54,9 @@ $(document).ready(() => {
                                 <input type="radio" name="select_song" value="${element.id}">
                                 <label id="${element.uri}" for="${element.name}"> 
                                     <img src="${element.images[2].url}">
-                                    <a href="${element.external_urls.spotify}">${element.name} - ${element.artists[0].name} - album</a>
+                                    <a href="${element.external_urls.spotify}">${element.name}</a>
+                                    <div>${element.artists[0].name}</div>
+                                    <div> album </div>
                                 </label>     
                             </div>`);
                         
@@ -77,7 +79,9 @@ $(document).ready(() => {
                                 <input type="radio" name="select_song" value="${element.id}">
                                 <label id="${element.uri}" for="${element.name}"> 
                                     <img src="${element.album.images[2].url}">
-                                    <a href="${element.external_urls.spotify}">${element.name} - ${element.artists[0].name} - song</a>
+                                    <a href="${element.external_urls.spotify}">${element.name}</a>
+                                        <div>${element.artists[0].name}</div>
+                                        <div> song </div>
                                 </label>          
                             </div>`);
                     } 
