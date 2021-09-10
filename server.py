@@ -170,10 +170,14 @@ def save_post_to_database():
     music_img = request.form.get('img')
     spotify_id = request.form.get('id')
     music_type = request.form.get('type')
+    artist_name = request.form.get('artist')
+    artist_url = request.form.get('artist_url')
     post_content = request.form.get('post_content')
     date = datetime.now()
-    print("-------------------------")
+    
     print(music_type)
+    print(artist_name)
+    print(artist_url)
 
     username = session['username']
 
@@ -182,7 +186,7 @@ def save_post_to_database():
         print("don't save this")
 
     else:
-        post = crud.create_post(session['user_id'], date, post_content, spotify_id, music_title, music_type, music_img, music_url)
+        post = crud.create_post(session['user_id'], date, post_content, spotify_id, music_title, music_type, music_img, music_url, artist_name, artist_url)
     
     return redirect(f'/diary/{username}')
 

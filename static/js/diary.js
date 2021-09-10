@@ -24,11 +24,10 @@ $(document).ready(() => {
         $.post('/diary_api.json', data, (response) => {
             console.log("posted");
             console.log(response);
+            console.log(response['tracks']['items'][0]['artists'][0]['external_urls']['spotify']);
             // Create empty song search dict for saving 
             // data about a song that will be used in posts
             song_data = {};
-            
-            // Use for album data
 
             // Loop through JSON response data from Spotify API
             // add each song to the song_data dictionary
@@ -47,7 +46,8 @@ $(document).ready(() => {
                             'url': element.external_urls.spotify,
                             'img': element.images[2].url,
                             'id': element.id,
-                            'artist': element.artists[0].name
+                            'artist': element.artists[0].name,
+                            'artist_url': element.artists[0].external_urls.spotify
                         }
 
                         $('#list_of_search_results').append(
@@ -73,7 +73,8 @@ $(document).ready(() => {
                             'url': element.external_urls.spotify,
                             'img': element.album.images[2].url,
                             'id': element.id,
-                            'artist': element.artists[0].name
+                            'artist': element.artists[0].name,
+                            'artist_url': element.artists[0].external_urls.spotify
                         }
 
                         $('#list_of_search_results').append(
@@ -93,9 +94,10 @@ $(document).ready(() => {
             $('#list_of_search_results').append(`<div> 
                         <input type="submit" value="post song"> 
                         </div>`)
+            console.log(song_data);
         });
     });
-     
+    
 
     $('#list_of_search_results').on('submit', (event) => {
         event.preventDefault();
@@ -126,7 +128,7 @@ $(document).ready(() => {
                 </label>            
             </div>`
         );
-        // Update each hidden inputon on the save_song_to_databse form at the top of 
+        // Update each hidden input on on the save_song_to_databse form at the top of 
         // the diary page.
         // Each hidden input tag's "value" is updated using data from post_song_data dict 
         // then the server grabs this data and saves to the database 
@@ -136,6 +138,8 @@ $(document).ready(() => {
         $('#song_img').val(post_song_data.img);
         $('#song_id').val(post_song_data.id);
         $('#music_type').val(post_song_data.type);
+        $('#artist_name').val(post_song_data.artist);
+        $('#artist_url').val(post_song_data.artist_url);
     });
 
     // add ajax request to delete post here

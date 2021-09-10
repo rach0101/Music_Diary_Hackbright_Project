@@ -69,11 +69,15 @@ class Post(db.Model):
 
     music_title = db.Column(db.String(75))
 
-    music_type = db.Column(db.String(8))
+    music_type = db.Column(db.String())
 
     music_img = db.Column(db.String())
 
     music_url = db.Column(db.String())
+
+    artist_name = db.Column(db.String())
+
+    artist_url = db.Column(db.String())
 
     def __repr__(self):
         return f"<Post post_id={self.post_id} post_content={self.post_content}>"

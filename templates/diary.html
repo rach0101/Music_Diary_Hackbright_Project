@@ -55,6 +55,8 @@
             <input type="hidden" id="song_img" name="img" value="id">
             <input type="hidden" id="song_id" name="id" value="id">
             <input type="hidden" id="music_type" name="type" value="id">
+            <input type="hidden" id="artist_name" name="artist" value="id">
+            <input type="hidden" id="artist_url" name="artist_url" value="id">
 
             <input id="comment" type="text" name="post_content" placeholder="Type music commentary here!">
             <input type="submit" value="submit post">
@@ -73,6 +75,8 @@
     <div class="post" id="{{post.post_id}}">
         <img src="{{post.music_img}}">
         <a href="{{post.music_url}}">{{post.music_title}} </a>
+        <div><a href="{{post.artist_url}}">{{post.artist_name}} </a> </div>
+        <p> {{post.music_type}}</p>
         <p> {{post.post_content}}</p>
         <p> {{post.date.strftime('%m-%d-%Y')}}</p>
 
