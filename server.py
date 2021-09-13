@@ -7,6 +7,7 @@ from jinja2 import StrictUndefined
 import spotipy, requests, os
 from spotipy.oauth2 import SpotifyClientCredentials
 from datetime import datetime
+import random 
 # os.system("source secrets.sh")
 
 app = Flask(__name__)
@@ -117,14 +118,19 @@ def create_new_account():
     # from create_account.html forms
     username = request.form.get('username')
     password = request.form.get('password')
-    spotify_username = request.form.get('spotify_username')
-    token = request.form.get('token')
-    
+    # spotify_username = request.form.get('spotify_username')
+    # token = request.form.get('token')
+    spotify_username = random.randint(100000, 999999999999999999999999)
+    token = random.randint(100000, 999999999999999999999999)
+    print(spotify_username)
+    print(token)
     # query database to see if user exists
     user = crud.get_user_by_username(username)
     
-    if username == "" or password == "" or spotify_username == "" or token == "":
+    if username == "" or password == "":
         flash("Please complete all fields below.")
+    # if username == "" or password == "" or spotify_username == "" or token == "":
+    #     flash("Please complete all fields below.")
 
     # if user exists flash message
     elif user:
@@ -132,7 +138,7 @@ def create_new_account():
     
     #if user does not already exist, create a new user 
     else:
-        user = crud.create_user(username, password, spotify_username, token)
+        user = crud.create_user(username, password, str(spotify_username), str(token))
         flash("Account created, please log in")
         return redirect('/')
 

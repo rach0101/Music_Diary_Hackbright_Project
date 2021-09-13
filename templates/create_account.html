@@ -7,6 +7,10 @@
 <h1>Welcome! You are one step closer to creating your new Music Diary!</h1>
 <p>Create Account Below</p>
 
+{% block head %} 
+<link rel="stylesheet" href="/static/styles.css">
+{% endblock %}
+
 {% for message in get_flashed_messages() %}
           <p class="flash-message">     
             {{ message }}
@@ -23,11 +27,11 @@
         Password <input id="password" type="password" name="password">
     </p>
 
-    <p>
+    <p class="hidden">
         Spotify Username <input id="spotify_username" type="text" name="spotify_username">
     </p>
 
-    <p>
+    <p class="hidden">
         Token <input id="token" type="text" name="token">
     </p>
 
