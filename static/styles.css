@@ -14,3 +14,15 @@
 .hidden {
     display: none;
 }
+
+.comment {
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+}
+
+.like_btn {
+    align-self: flex-end;
+    text-align: right;
+    width: 100%;
+}

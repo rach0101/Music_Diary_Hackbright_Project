@@ -135,13 +135,12 @@
                             <p> {{post.date.strftime('%m-%d-%Y')}}</p>
                         </div>
 
-                        <div class="col-5">
+                        <div class="comment col-5">
                             <p> {{post.post_content}}</p>
                             <!-- put delete and like buttons in the same container -->
-                            <div>
-                                
-                                    <span id="post_id_for_like_{{post.post_id}}">{{post.likes|length}}</span>
-                                    <button type="button" class="like_post" id="{{post.post_id}}"> Like </button>
+                            <div class="like_btn">
+                                <span id="post_id_for_like_{{post.post_id}}">{{post.likes|length}}</span>
+                                <button type="button" class="like_post" id="{{post.post_id}}"> Like </button>
                             </div>
                         </div>
                     </div>  
