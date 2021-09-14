@@ -64,7 +64,8 @@
                     
                     <div class="col-4">
                         <form id="music_search_form"> 
-                            <input type="text" placeholder="What are you listening to today?" id="music_search_input">
+                            <input type="text" placeholder="Search" id="music_search_input">
+                            <div class="form-text">Type name of song or album and press enter to search.</div>
                         </form>
                     </div>
 
@@ -133,7 +134,7 @@
                                     <input type="submit" value="delete"> 
                                 </form>
                                 {% endif %}
-                                    <div id="post_id_for_like_{{post.post_id}}">{{post.likes|length}}</div>
+                                    <span id="post_id_for_like_{{post.post_id}}">{{post.likes|length}}</span>
                                     <button type="button" class="like_post" id="{{post.post_id}}"> Like </button>
                             </div>
                         </div>
