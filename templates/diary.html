@@ -106,28 +106,40 @@
             
     {% endif %}
 
-    
+    <!-- format posts below!!! -->
     {% for post in posts %}
     <div class="row"> 
         <div class="col-8">
-            <div class="post p-3" id="{{post.post_id}}">
-                <img src="{{post.music_img}}">
-                <a href="{{post.music_url}}">{{post.music_title}} </a>
-                <div><a href="{{post.artist_url}}">{{post.artist_name}} </a> </div>
-                <p> {{post.music_type}}</p>
-                <p> {{post.post_content}}</p>
-                <p> {{post.date.strftime('%m-%d-%Y')}}</p>
+            
+                <div class="post p-3" id="{{post.post_id}}">
+                    <div class="row">
+                        
+                        <div class="col-2">
+                            <img src="{{post.music_img}}">
+                        </div>
 
-                {% if read_write %}
-                <form class="delete_post" id="{{post.post_id}}"> 
-                    <input type="submit" value="delete"> 
-                </form>
-                {% endif %}
-                <div>
-                    <div id="post_id_for_like_{{post.post_id}}">{{post.likes|length}}</div>
-                    <button type="button" class="like_post" id="{{post.post_id}}"> Like </button>
-                </div>
-            </div>    
+                        <div class="col-5">
+                            <a href="{{post.music_url}}">{{post.music_title}} </a>
+                            <div>{{post.music_type}} ⦁ <a href="{{post.artist_url}}">{{post.artist_name}} </a> </div>
+                            <p> {{post.date.strftime('%m-%d-%Y')}}</p>
+                        </div>
+
+                        <div class="col-5">
+                            <p> {{post.post_content}}</p>
+                            
+                            {% if read_write %}
+                            <form class="delete_post" id="{{post.post_id}}"> 
+                                <input type="submit" value="delete"> 
+                            </form>
+                            {% endif %}
+                            <div>
+                                <div id="post_id_for_like_{{post.post_id}}">{{post.likes|length}}</div>
+                                <button type="button" class="like_post" id="{{post.post_id}}"> Like </button>
+                            </div>
+                        </div>
+                    </div>  
+                </div> 
+                 
         </div> 
     </div>
     {% endfor %}
