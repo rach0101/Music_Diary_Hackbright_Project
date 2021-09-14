@@ -126,15 +126,15 @@
 
                         <div class="col-5">
                             <p> {{post.post_content}}</p>
-                            
-                            {% if read_write %}
-                            <form class="delete_post" id="{{post.post_id}}"> 
-                                <input type="submit" value="delete"> 
-                            </form>
-                            {% endif %}
+                            <!-- put delete and like buttons in the same container -->
                             <div>
-                                <div id="post_id_for_like_{{post.post_id}}">{{post.likes|length}}</div>
-                                <button type="button" class="like_post" id="{{post.post_id}}"> Like </button>
+                                {% if read_write %}
+                                <form class="delete_post" id="{{post.post_id}}"> 
+                                    <input type="submit" value="delete"> 
+                                </form>
+                                {% endif %}
+                                    <div id="post_id_for_like_{{post.post_id}}">{{post.likes|length}}</div>
+                                    <button type="button" class="like_post" id="{{post.post_id}}"> Like </button>
                             </div>
                         </div>
                     </div>  
