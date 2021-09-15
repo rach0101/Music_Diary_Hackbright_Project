@@ -25,7 +25,7 @@
 {% block body %}
 
 <!-- container div below -->
-<div class="container">
+<div class="container-fluid">
     {% if read_write %}
     <div class="row">
         <div class="col-8">
@@ -48,7 +48,8 @@
     {% if read_write %}
     <div class="row"> 
         <!-- parent col -->
-        <div class="col-8">
+    
+        <div class="col-lg-8 col-md-8 col-sm-12">
 
             <div id="create_post" class="post p-3 mb-3">
                 <!-- create row to make nested columns -->
@@ -57,14 +58,14 @@
 
                     </div>
                     
-                    <div class="col-4">
+                    <div class="col-lg-4 col-md-4 col-sm-12">
                         <form id="music_search_form"> 
                             <input type="text" placeholder="Search" id="music_search_input">
                             <div class="form-text">Type name of song or album and press enter to search.</div>
                         </form>
                     </div>
 
-                    <div class="col-8" id="populate_music_post"> 
+                    <div class="col-lg-8 col-md-8 col-sm-12" id="populate_music_post"> 
                         
                             <form id="submit_final_post" action="/save_song_to_database" method="POST"> 
                                 <!-- add hidden input fields here where i can save values 
