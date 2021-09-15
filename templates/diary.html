@@ -28,7 +28,7 @@
 <div class="container-fluid">
     {% if read_write %}
     <div class="row">
-        <div class="col-8">
+        <div class="col-lg-8 col-md-8 col-sm-12">
             <h1>My Diary</h1>
             <p>Hello {{username}}!</p>
         </div>
@@ -37,7 +37,7 @@
 
     {% else %}
     <div class="row">
-        <div class="col-8">
+        <div class="col-lg-8 col-md-8 col-sm-12">
             <h1>{{username}}'s Diary</h1> 
         </div>
     </div>
@@ -92,9 +92,9 @@
             </div>
         </div>
     </div>
-
+<!-- format this section! -->
     <div class="row"> 
-        <div class="col-8">
+        <div class="col-lg-8 col-md-8 col-sm-12">
             <form id="list_of_search_results">
 
             </form>
@@ -106,12 +106,12 @@
     <!-- format posts below!!! -->
     {% for post in posts %}
     <div class="row"> 
-        <div class="col-8">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-12">
             
-                <div class="post p-3 mb-3"" id="{{post.post_id}}">
+                <div class="post p-3 mb-3" id="{{post.post_id}}">
                     <div class="row">
                         
-                        <div class="col-2">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-6">
                             <img class="mb-3 music_img" src="{{post.music_img}}">
                             {% if read_write %}
                             <div>  
@@ -122,15 +122,15 @@
                             {% endif %}
                         </div>
 
-                        <div class="music_info col-5">
+                        <div class="music_info col-lg-5 col-md-5 col-sm-5 col-6">
                             <a href="{{post.music_url}}">{{post.music_title}} </a>
                             <div>{{post.music_type}} ⦁ <a href="{{post.artist_url}}">{{post.artist_name}} </a> </div>
                             <p> {{post.date.strftime('%m-%d-%Y')}}</p>
                         </div>
 
-                        <div class="comment col-5">
+                        <div class="comment col-lg-5 col-md-5 col-sm-5 col-12 pt-4">
                             <p> {{post.post_content}}</p>
-                            <!-- put delete and like buttons in the same container -->
+                            
                             <div class="like_btn">
                                 <span id="post_id_for_like_{{post.post_id}}">{{post.likes|length}}</span>
                                 <button type="button" class="like_post" id="{{post.post_id}}"> Like </button>
