@@ -2,45 +2,48 @@
 
 {% block title %}User Login - Music Diary{% endblock %}
 
-{% block body %}
-
-<h1>Welcome! You are one step closer to creating your new Music Diary!</h1>
-<p>Create Account Below</p>
-
 {% block head %} 
 <link rel="stylesheet" href="/static/styles.css">
-{% endblock %}
+{% endblock %}  
 
-{% for message in get_flashed_messages() %}
-          <p class="flash-message">     
-            {{ message }}
-          </p>
-{% endfor %}
+{% block body %}
+<div class="container main_container">
+    <div class="row">
+        <div class="col"></div>
+            <h1>Welcome! You are one step closer to creating your new Music Diary!</h1>
+            <p>Create Account Below</p>
 
-<form id="create_account" action="/create_new_account" method="POST"> 
-    
-    <p>
-        Username <input id="username" type="text" name="username">
-    </p>
+            {% for message in get_flashed_messages() %}
+                    <p class="flash-message">     
+                        {{ message }}
+                    </p>
+            {% endfor %}
 
-    <p>
-        Password <input id="password" type="password" name="password">
-    </p>
+            <form id="create_account" action="/create_new_account" method="POST"> 
+                
+                <p>
+                    Username <input id="username" type="text" name="username">
+                </p>
 
-    <p class="hidden">
-        Spotify Username <input id="spotify_username" type="text" name="spotify_username">
-    </p>
+                <p>
+                    Password <input id="password" type="password" name="password">
+                </p>
 
-    <p class="hidden">
-        Token <input id="token" type="text" name="token">
-    </p>
+                <p class="hidden">
+                    Spotify Username <input id="spotify_username" type="text" name="spotify_username">
+                </p>
 
-    <p>
-        <input type="submit">
-    </p>
-</form>
+                <p class="hidden">
+                    Token <input id="token" type="text" name="token">
+                </p>
 
-
+                <p>
+                    <input type="submit">
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
 
 
 <script src="static/js/create_account.js"> </script>

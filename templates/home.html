@@ -1,40 +1,48 @@
-<!-- make login form -->
-<!-- add form for username and password -->
+
 
 {% extends 'base.html' %}
 
 {% block title %}User Login - Music Diary{% endblock %}
 
+{% block head %} 
+<link rel="stylesheet" href="/static/styles.css">
+{% endblock %}
+
 {% block body %}
 <!-- body content here -->
-<h1>Welcome to your new Music Diary!</h1>
-<p>Login Below</p>
+<div class="container main_container">
+    <div class="row login_container">
+        <div class="col login_page"></div>
+            <h1>Welcome to your Music Diary!</h1>
+            <p>Login Below</p>
 
-{% for message in get_flashed_messages() %}
-          <p class="flash-message">     
-            {{ message }}
-          </p>
-{% endfor %}
+            {% for message in get_flashed_messages() %}
+                    <p class="flash-message">     
+                        {{ message }}
+                    </p>
+            {% endfor %}
 
 
-<form id="login" action="/login" method="POST"> 
-    <p>
-        Username <input id="username" type="text" name="username">
-    </p>
+            <form id="login" action="/login" method="POST"> 
+                <p>
+                    Username <input id="username" type="text" name="username">
+                </p>
 
-    <p>
-        Password <input id="password" type="password" name="password">
-    </p>
+                <p>
+                    Password <input id="password" type="password" name="password">
+                </p>
 
-    <p>
-        <input type="submit">
-    </p>
-</form>
+                <p>
+                    <input type="submit">
+                </p>
+            </form>
 
-<form action="/create_account" method="get">
-    <button type="submit">Create Account</button>
-</form>
-
+            <form action="/create_account" method="get">
+                <button type="submit">Create Account</button>
+            </form>
+        </div>
+    </div>
+</div>
 
 
 
