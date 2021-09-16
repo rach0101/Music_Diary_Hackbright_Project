@@ -113,7 +113,7 @@
                 <div class="post p-3 mb-3" id="{{post.post_id}}">
                     <div class="row">
                         
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-6">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-3">
                             <img class="mb-3 music_img" src="{{post.music_img}}">
                             {% if read_write %}
                             <div>  
@@ -124,7 +124,7 @@
                             {% endif %}
                         </div>
 
-                        <div class="music_info col-lg-5 col-md-5 col-sm-5 col-6">
+                        <div class="music_info col-lg-5 col-md-5 col-sm-5 col-9">
                             <a href="{{post.music_url}}">{{post.music_title}} </a>
                             <div>{{post.music_type}} ⦁ <a href="{{post.artist_url}}">{{post.artist_name}} </a> </div>
                             <p> {{post.date.strftime('%m-%d-%Y')}}</p>
