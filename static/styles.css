@@ -89,6 +89,7 @@ h2 {
     background: #2ecc71;
     color:#ecf0f1;
     border: none;
+    padding: 3;
 }
 
 .button:hover {
