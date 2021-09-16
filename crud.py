@@ -18,7 +18,7 @@ def create_user(username, password, spotify_username, token):
 # Create Posts Table
 def create_post(user_id, date, post_content, spotify_id, music_title, 
                 music_type, music_img, music_url, artist_name, artist_url):
-    # added total likes
+    
     post = Post(user_id=user_id, date=date, post_content=post_content, 
                 spotify_id=spotify_id, music_title=music_title, music_type=music_type, 
                 music_img=music_img, music_url=music_url, artist_name=artist_name, artist_url=artist_url)
@@ -37,7 +37,7 @@ def get_users():
 
 def get_user_by_username(username):
     """Return a user object by username"""
-  
+    
     user = User.query.filter(User.username == username).first()
     
     return user
@@ -46,12 +46,19 @@ def get_user_by_username(username):
 def get_posts_by_user_id(user_id):
     """Return all posts with the given user id"""
    
+    # Query posts table to get posts by user id 
+    # and joins loaded query data with likes table
+    # so that the related rows (likes in this case)
+    # are loaded in the same results set.
+    # https://docs.sqlalchemy.org/en/14/orm/loading_relationships.html# (/)
+    # :~:text=joined%20loading%20%2D%20available%20via%20lazy,in%20the%20same%20result%20set.
+
     posts = Post.query.filter(Post.user_id == user_id).options(db.joinedload("likes"))
     
     return posts.order_by(desc(Post.post_id)).all()
 
 
-# function to get post by user_id and post_id and delete
+# Function to get post by user_id and post_id and delete
 def delete_user_post(user_id, post_id):
     """Return all posts with the given user id and post id
     then delete"""
@@ -66,7 +73,7 @@ def delete_user_post(user_id, post_id):
 def create_like(poster_user_id, post_id):
     
     existing_likes = Like.query.filter(and_(Like.post_id == post_id, Like.poster_user_id == poster_user_id)).all()
-    print(existing_likes)
+    
     if not existing_likes:
         like = Like(poster_user_id = poster_user_id, post_id = post_id)
 
@@ -78,7 +85,7 @@ def create_like(poster_user_id, post_id):
     else:
         return None
 
-# get likes by post id??
+
 def get_likes_by_post_id(post_id):
     """Return all likes with the given post id"""
    

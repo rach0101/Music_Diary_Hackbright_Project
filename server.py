@@ -15,7 +15,7 @@ app.secret_key = "dev"
 # app.secret_key = os.environ['APP_KEY']
 app.jinja_env.undefined = StrictUndefined
 
-# add Spotipy auth
+#Spotipy Auth
 auth_manager = SpotifyClientCredentials()
 sp = spotipy.Spotify(auth_manager=auth_manager)
 
@@ -40,8 +40,7 @@ def login_user():
 
     # Get user object from database 
     user = crud.get_user_by_username(username)
-    print(user)
-    print(username)
+   
     if not user:
         if username and not user:
             flash("User does not exist. Please create a new account.")
@@ -50,7 +49,6 @@ def login_user():
 
         return jsonify({"url": '/'})
     else:
-        print("USER FOUND")
         # Check if password is same as what is stored in database  
         if password == user.password:
             # Store user id and username in session when logged in
@@ -63,7 +61,6 @@ def login_user():
             flash("Please enter a valid password")
             return jsonify({"url": '/'})
     
-    
 
 @app.route('/diary/<username>')
 def visit_profile(username):
@@ -73,7 +70,6 @@ def visit_profile(username):
     user_id = None
 
     if read_write:
-
         #Get user id and username from session
         user_id = session['user_id']
        
@@ -92,7 +88,7 @@ def visit_profile(username):
     
     return render_template('diary.html', posts = posts, username=username, read_write=read_write)
 
-# route to log user out
+# Route to log user out
 @app.route('/logout')
 def logout_user():
     """Log user out"""
@@ -118,20 +114,17 @@ def create_new_account():
     # from create_account.html forms
     username = request.form.get('username')
     password = request.form.get('password')
-    # spotify_username = request.form.get('spotify_username')
-    # token = request.form.get('token')
+    
+    # Generate random Spotify usernames and tokens
     spotify_username = random.randint(100000, 999999999999999999999999)
     token = random.randint(100000, 999999999999999999999999)
-    print(spotify_username)
-    print(token)
+
     # query database to see if user exists
     user = crud.get_user_by_username(username)
     
     if username == "" or password == "":
         flash("Please complete all fields below.")
-    # if username == "" or password == "" or spotify_username == "" or token == "":
-    #     flash("Please complete all fields below.")
-
+    
     # if user exists flash message
     elif user:
         flash("This account already exists")
@@ -146,7 +139,7 @@ def create_new_account():
 
 # Route to grab searched song from AJAX request in diary.js
 # then content is queried into Spotify API to retrieve list
-# of song results from search
+# of song results from search.
 @app.route('/diary_api.json', methods=['POST'])
 def get_api_search():
     """Grab search data from form via AJAX post request in diary.js.
@@ -203,12 +196,19 @@ def delete_post():
 
     post_id = request.form.get('post_id')
 
+    # Use user_id from session and post_id from ajax post request
+    # in diary.js to delete post on form submit (delete button click).
     post = crud.delete_user_post(session['user_id'], post_id)
-     
+    
+    # Get username from session 
     username = session['username']
     
+    # Load all posts by user in session so that 
+    # selected post can be deleted from the HTML
     posts = crud.get_posts_by_user_id(session['user_id'])
 
+    # Send post_id to the front end so that the HTML 
+    # element can be removed.
     return post_id
     
 
@@ -217,8 +217,12 @@ def search_and_view_other_profiles():
     """Grab searched username and redirect to that user's profile
         page"""
     
+    # Get searched username from form on frontend
     profile_search = request.form.get('search')
+
+    # Query user table to get user from username search
     user = crud.get_user_by_username(profile_search)
+    # Check if user exists
     if user != None:
         return redirect(f'/diary/{user.username}')
     else: 
@@ -231,12 +235,24 @@ def add_like_to_post():
     """Get like on click and add to 
     user's posts"""
 
+    # Get username from session
     username = session['username']
+    # Get user id from session
     user_id = session['user_id']
+
+    # Get post id from ajax post request
     post_id = request.form.get('post_id') 
+
+    # Create a like in the database using
+    # the user id and post id.
     like = crud.create_like(user_id, post_id)
-    # get the number of likes and send to front end
+    
+    # Get list of all like objects in database 
+    # for the given post id. Count the length of 
+    # the list (total number of likes) and send to frontend
+    # as a dictionary.
     like_count = crud.get_likes_by_post_id(post_id)
+
     return jsonify({"like_count": len(like_count),
                      "post_id": post_id})
 
