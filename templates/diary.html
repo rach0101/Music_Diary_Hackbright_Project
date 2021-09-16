@@ -13,6 +13,7 @@
     <a class="p-2" href="/logout" action="/logout"> Logout</a>
 
 </div>
+<!-- Form to search for friends by username -->
 <form action="/search" method="POST" class="form-inline"> 
     <input type="text" placeholder="search for friends" name="search"> 
     <input class="nav_button" type="submit" value="submit">
@@ -27,8 +28,12 @@
 {% endblock %}
 {% block body %}
 
-<!-- container div below -->
+<!-- Bootstrap container div below -->
 <div class="container-fluid">
+    <!-- Check if user has read-write access
+    (user is logged into his/her own page)
+    if yes display "My Diary" otherwise
+    display "Username's Diary" for friend -->
     {% if read_write %}
     <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-12">
@@ -37,7 +42,6 @@
         </div>
     </div>
     
-
     {% else %}
     <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-12">
@@ -48,6 +52,9 @@
 
     {% endif %}
 
+    <!-- If user has read-write access user will be able to
+    create posts. Otherwise, the create post section will
+    be excluded from the HTML. -->
     {% if read_write %}
     <div class="row"> 
         <!-- parent col -->
@@ -106,7 +113,7 @@
             
     {% endif %}
 
-    <!-- format posts below!!! -->
+    <!-- Display all posts from database by user id -->
     {% for post in posts %}
     <div class="row"> 
         <div class="col-lg-8 col-md-8 col-sm-12 col-12">
@@ -116,6 +123,8 @@
                         
                         <div class="col-lg-2 col-md-2 col-sm-2 col-3">
                             <img class="mb-3 music_img" src="{{post.music_img}}">
+                            <!-- Only include delete post function if user has
+                            read-write access -->
                             {% if read_write %}
                             <div>  
                                 <form class="delete_post" id="{{post.post_id}}"> 
@@ -146,8 +155,6 @@
     </div>
     {% endfor %}
     
-    
-
 <!-- end container -->
 </div>
 
