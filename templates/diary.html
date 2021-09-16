@@ -84,7 +84,7 @@
                                 <div class="post_content">
                                     <textarea id="comment"class="form-control mb-3" form="submit_final_post" name="post_content"> Type comments here.
                                     </textarea>
-                                    <input class="post_submit" type="submit" value="submit post">
+                                    <input class="button post_submit" type="submit" value="submit post">
                                 </div>
                                 
                             </form>
@@ -118,7 +118,7 @@
                             {% if read_write %}
                             <div>  
                                 <form class="delete_post" id="{{post.post_id}}"> 
-                                    <input type="submit" value="delete"> 
+                                    <input class="button" type="submit" value="delete"> 
                                 </form>
                             </div>  
                             {% endif %}
@@ -135,7 +135,7 @@
                             
                             <div class="like_btn">
                                 <span id="post_id_for_like_{{post.post_id}}">{{post.likes|length}}</span>
-                                <button type="button" class="like_post" id="{{post.post_id}}"> Like </button>
+                                <button type="button" class="button like_post" id="{{post.post_id}}">👍 Like </button>
                             </div>
                         </div>
                     </div>  
