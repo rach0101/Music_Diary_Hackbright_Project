@@ -1,3 +1,27 @@
+body {
+    background: #ecf0f1;
+    color: #2c3e50;
+    /* font-family: 'Signika', sans-serif; */
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+}
+h1 {
+    font-weight: 800;
+}
+
+h2 {
+    font-weight: 800;
+}
+ nav {
+     background:#2ecc71;
+ }
+
+ nav a {
+    color: #8e44ad;
+ }
+ a {
+     color: #1abc9c;
+ }
 
 .post {
     border: 2px solid black; 
@@ -48,6 +72,5 @@
 .main_container {
     margin: 0;
 }
-
 
 
