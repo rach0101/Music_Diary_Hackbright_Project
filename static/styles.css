@@ -14,10 +14,10 @@ h2 {
 }
  nav {
      background:#2ecc71;
+     color: #ecf0f1;
  }
-
  nav a {
-    color: #8e44ad;
+    color: #ecf0f1; 
  }
 
 .navbar-brand {
