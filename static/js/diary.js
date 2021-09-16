@@ -106,7 +106,7 @@ $(document).ready(() => {
                 };     
             };
             $('#list_of_search_results').append(`<div> 
-                        <input type="submit" value="post music"> 
+                        <input class="button mb-3" type="submit" value="post music"> 
                         </div>`)
 
             console.log(song_data);
