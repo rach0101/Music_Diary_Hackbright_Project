@@ -15,6 +15,7 @@ def create_user(username, password, spotify_username, token):
 
     return user
 
+
 # Create Posts Table
 def create_post(user_id, date, post_content, spotify_id, music_title, 
                 music_type, music_img, music_url, artist_name, artist_url):
@@ -29,23 +30,16 @@ def create_post(user_id, date, post_content, spotify_id, music_title,
 
     return post
 
+
 # Queries for users and accounts
 def get_users():
     """Return a list of user records"""
     
     return User.query.get(user_id)
 
+
 def get_user_by_username(username):
-    """Return a user object by username.
-    
-    For example:
-
-    >>> get_user_by_username("rach0101")
-    <User user_id=1 username=rach0101>
-
-    >>> get_user_by_username("rach0102")
-    
-    """
+    """Return a user object by username."""
     
     user = User.query.filter(User.username == username).first()
     
@@ -76,6 +70,7 @@ def delete_user_post(user_id, post_id):
     db.session.commit()
 
     return post
+
 
 def create_like(poster_user_id, post_id):
     

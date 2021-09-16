@@ -26,6 +26,7 @@ def home():
 
     return render_template('home.html')
 
+
 # Route to diary homepage where user can log in
 # or create an account
 @app.route('/login', methods=["POST"])
@@ -88,6 +89,7 @@ def visit_profile(username):
     
     return render_template('diary.html', posts = posts, username=username, read_write=read_write)
 
+
 # Route to log user out
 @app.route('/logout')
 def logout_user():
@@ -97,12 +99,14 @@ def logout_user():
 
     return redirect('/')
 
+
 # Route to render create account template
 @app.route('/create_account')
 def create_account():
     """Create a New Account and Display Form"""
   
     return render_template('create_account.html')
+
 
 # Route that grabs new account data from form and
 # saves to the Users database as a new user
@@ -136,6 +140,7 @@ def create_new_account():
         return redirect('/')
 
     return redirect('/create_account')
+
 
 # Route to grab searched song from AJAX request in diary.js
 # then content is queried into Spotify API to retrieve list
@@ -191,6 +196,7 @@ def save_post_to_database():
     
     return redirect(f'/diary/{username}')
 
+
 # Delete song from database
 @app.route('/delete_post', methods=['POST'])
 def delete_post():
@@ -232,6 +238,7 @@ def search_and_view_other_profiles():
         username = session['username']
         return redirect(f'/diary/{username}')
 
+
 @app.route('/like_post', methods=["POST"])
 def add_like_to_post():
     """Get like on click and add to 
@@ -257,6 +264,7 @@ def add_like_to_post():
 
     return jsonify({"like_count": len(like_count),
                      "post_id": post_id})
+
 
 if __name__ == '__main__':
     connect_to_db(app)
