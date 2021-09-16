@@ -54,14 +54,20 @@ $(document).ready(() => {
 
                         $('#list_of_search_results').append(
                             // Set song ID to form input value            
-                            `<div class="radio_selection" id="select_song" value="${element.id}">
-                                <input type="radio" name="select_song" value="${element.id}">
-                                <label id="${element.uri}" for="${element.name}"> 
-                                    <img src="${element.images[2].url}">
-                                    <a href="${element.external_urls.spotify}">${element.name}</a>
-                                    <div> album ⦁ <a href="${element.artists[0].external_urls.spotify}">${element.artists[0].name}</a>
-                                    </div>
-                                </label>     
+                            `<div class="radio_selection col-lg-8 col-md-8 col-sm-12 col-12 pb-3" id="select_song" value="${element.id}">
+                            <div class="row">
+                                        <div class="col-lg-2 col-md-2 col-sm-2 col-4">   
+                                            <input type="radio" name="select_song" value="${element.id}">
+                                            <label id="${element.uri}" for="${element.name}"> 
+                                            <img src="${element.images[2].url}">
+                                        </div>
+                                        
+                                        <div class="col-lg-5 col-md-5 col-sm-5 col-8"> 
+                                            <a href="${element.external_urls.spotify}">${element.name}</a>
+                                            <div> album ⦁ <a href="${element.artists[0].external_urls.spotify}">${element.artists[0].name}</a> </div>
+                                        </div>        
+                                    </label>  
+                                </div>
                             </div>`);
                         
                     }
