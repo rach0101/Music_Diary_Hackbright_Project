@@ -8,15 +8,16 @@
 
 {% block nav %}
 <!-- fix link below -->
+<div class="navbar_links"> 
+    <a class="p-2" href="/diary/<username>"> My Diary</a> 
+    <a class="p-2" href="/logout" action="/logout"> Logout</a>
 
-<a class="p-2" href="/diary/<username>"> My Diary</a> 
-<a class="p-2" href="/logout" action="/logout"> Logout</a>
-
-
+</div>
 <form action="/search" method="POST" class="form-inline"> 
     <input type="text" placeholder="search for friends" name="search"> 
     <input class="nav_button" type="submit" value="submit">
 </form>
+
 {% for message in get_flashed_messages() %}
           <p class="flash-message">     
             {{ message }}
@@ -32,7 +33,7 @@
     <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-12">
             <h1>My Diary</h1>
-            <p>Hello {{username}}!</p>
+            <p class="uppercase">Hello {{username}}!</p>
         </div>
     </div>
     
@@ -40,7 +41,7 @@
     {% else %}
     <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-12">
-            <h1>{{username}}'s Diary</h1> 
+            <h1 class="uppercase">{{username}}'s Diary</h1> 
         </div>
     </div>
     

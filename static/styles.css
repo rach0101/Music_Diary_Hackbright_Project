@@ -25,6 +25,18 @@ h2 {
     font-size: 25px; 
    
 }
+.form-inline {
+    font-size: 1em;
+}
+@media (max-width: 576px) { 
+    .form-inline {
+        font-size: .75em;
+    }
+    .navbar_links {
+        font-size: .90em;
+    }
+
+}
  a {
      color: #1abc9c;
  }
@@ -34,11 +46,15 @@ h2 {
      font-weight: bold;
  }
 
+ .uppercase {
+     text-transform: capitalize;
+ }
 .post {
     border: 2px solid black; 
     border-radius: 25px;
     
 }
+
 
 
 #music_comment {
