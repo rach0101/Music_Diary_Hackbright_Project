@@ -19,8 +19,19 @@ h2 {
  nav a {
     color: #8e44ad;
  }
+
+.navbar-brand {
+    font-family: 'Monoton', cursive;
+    font-size: 30px; 
+   
+}
  a {
      color: #1abc9c;
+ }
+
+ a:hover {
+     color: #e74c3c;
+     font-weight: bold;
  }
 
 .post {
