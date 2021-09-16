@@ -153,7 +153,9 @@ def get_api_search():
     results = sp.search(music_search, limit = 5, type="track,album")
     
     # Return a json dictionary of album and track data. There will 
-    # be 5 albums and 5 tracks in the response object
+    # be 5 albums and 5 tracks in the response object. Response 
+    # object will contain two keys: albums and tracks which will 
+    # be iterated over on the frontend.
     return jsonify(results)
    
 

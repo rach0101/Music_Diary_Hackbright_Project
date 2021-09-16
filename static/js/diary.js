@@ -9,7 +9,7 @@ $(document).ready(() => {
     $('#music_search_form').on('submit', (event) => {
         
         event.preventDefault();
-        console.log("clicked");
+        
         // Empty DOM of any old search results and refresh with new search
         $('#list_of_search_results').empty(); 
         
@@ -22,26 +22,36 @@ $(document).ready(() => {
         // Send data (key: value pair) to the server as a post request
         // and retrieve Spotify API response data from server
         $.post('/diary_api.json', data, (response) => {
-            console.log("posted");
-            console.log(response);
-            console.log(response['tracks']['items'][0]['artists'][0]['external_urls']['spotify']);
-            // Create empty song search dict for saving 
-            // data about a song that will be used in posts
+           
+            // Create empty  search dict for saving 
+            // data about a songs and albums that will be used in posts
             song_data = {};
-            const ordered_response = {'tracks': response['tracks'], 'albums': response['albums']}
-            console.log(ordered_response);
 
-            // Loop through JSON response data from Spotify API
-            // add each song to the song_data dictionary
+            // In order to get song data to populate first on the app, the order of 
+            // dictionary keys was reversed so that tracks would show first,
+            // then albums. The ordered_response dict below is used to load
+            // song data first on the frontend.
+            const ordered_response = {'tracks': response['tracks'], 'albums': response['albums']}
+
+            // Loop through ordered_response dictionary from Spotify API 
+            // starting first by iterating over the albums and tracks keys
+            // then accessing each dictionary individually.
+            // Add each song and album to the song_data dictionary based 
+            // on music type.
+
+            // Iterate over dictionary keys starting with songs.
             for (const dict_key in ordered_response){
 
                 for (const element of ordered_response[dict_key]['items']){
                     
                     
                     if (dict_key == 'albums'){
-                        console.log(element.artists[0].name)
-                        console.log(element.artists[0].external_urls.spotify)
 
+                        // Add each album from search query to 
+                        // song_data dictionary. This data is used
+                        // to populate hidden HTML elements which
+                        // are used to send the data to the server
+                        // in which it is added to the database.
                         song_data[element.id] = {
                             'type': 'album',
                             'name': element.name,
@@ -51,9 +61,12 @@ $(document).ready(() => {
                             'artist': element.artists[0].name,
                             'artist_url': element.artists[0].external_urls.spotify
                         }
-
+                        
+                        // For each album in the results dictionary, add HTML
+                        // shown below to frontend so user can see album title,
+                        // image and select by clicking radio button.
                         $('#list_of_search_results').append(
-                            // Set song ID to form input value            
+
                             `<div class="radio_selection col-lg-12 col-md-12 col-sm-12 col-12 pb-3" id="select_song" value="${element.id}">
                             <div class="row">
                                         <div class="col-lg-2 col-md-2 col-sm-2 col-4">   
@@ -72,9 +85,8 @@ $(document).ready(() => {
                         
                     }
                     else {
-                        console.log(element.type)
-                        console.log(element.artists[0].external_urls.spotify)
-
+                        // Add each song from search query to 
+                        // song_data dictionary.
                         song_data[element.id] = {
                             'type': 'song',
                             'name': element.name,
@@ -84,7 +96,10 @@ $(document).ready(() => {
                             'artist': element.artists[0].name,
                             'artist_url': element.artists[0].external_urls.spotify
                         }
-
+                        
+                        // For each song in the results dictionary, add HTML
+                        // shown below to frontend so user can see album title,
+                        // image and select by clicking radio button.
                         $('#list_of_search_results').append(
                             // Set song ID to form input value            
                             `<div class="radio_selection col-lg-12 col-md-12 col-sm-12 col-12 pb-3" id="select_song" value="${element.id}">
@@ -105,11 +120,11 @@ $(document).ready(() => {
                     } 
                 };     
             };
+
+            // Submit button to submit song or album selection for post.
             $('#list_of_search_results').append(`<div> 
                         <input class="button mb-3" type="submit" value="post music"> 
                         </div>`)
-
-            console.log(song_data);
         });
     });
     
