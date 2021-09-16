@@ -36,7 +36,16 @@ def get_users():
     return User.query.get(user_id)
 
 def get_user_by_username(username):
-    """Return a user object by username"""
+    """Return a user object by username.
+    
+    For example:
+
+    >>> get_user_by_username("rach0101")
+    <User user_id=1 username=rach0101>
+
+    >>> get_user_by_username("rach0102")
+    
+    """
     
     user = User.query.filter(User.username == username).first()
     
@@ -50,8 +59,6 @@ def get_posts_by_user_id(user_id):
     # and joins loaded query data with likes table
     # so that the related rows (likes in this case)
     # are loaded in the same results set.
-    # https://docs.sqlalchemy.org/en/14/orm/loading_relationships.html# (/)
-    # :~:text=joined%20loading%20%2D%20available%20via%20lazy,in%20the%20same%20result%20set.
 
     posts = Post.query.filter(Post.user_id == user_id).options(db.joinedload("likes"))
     
