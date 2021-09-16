@@ -8,10 +8,10 @@
 
 {% block nav %}
 <!-- fix link below -->
-<div>
-    <a href="/diary/<username>"> My Diary</a> 
-    <a href="/logout" action="/logout"> Logout</a>
-</div>
+
+<a class="p-2" href="/diary/<username>"> My Diary</a> 
+<a class="p-2" href="/logout" action="/logout"> Logout</a>
+
 
 <form action="/search" method="POST" class="form-inline"> 
     <input type="text" placeholder="search for friends" name="search"> 
