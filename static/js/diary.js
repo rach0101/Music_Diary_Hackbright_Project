@@ -54,7 +54,7 @@ $(document).ready(() => {
 
                         $('#list_of_search_results').append(
                             // Set song ID to form input value            
-                            `<div class="radio_selection col-lg-8 col-md-8 col-sm-12 col-12 pb-3" id="select_song" value="${element.id}">
+                            `<div class="radio_selection col-lg-12 col-md-12 col-sm-12 col-12 pb-3" id="select_song" value="${element.id}">
                             <div class="row">
                                         <div class="col-lg-2 col-md-2 col-sm-2 col-4">   
                                             <input type="radio" name="select_song" value="${element.id}">
@@ -87,7 +87,7 @@ $(document).ready(() => {
 
                         $('#list_of_search_results').append(
                             // Set song ID to form input value            
-                            `<div class="radio_selection col-lg-8 col-md-8 col-sm-12 col-12 pb-2" id="select_song" value="${element.id}">
+                            `<div class="radio_selection col-lg-12 col-md-12 col-sm-12 col-12 pb-2" id="select_song" value="${element.id}">
                                 <div class="row">   
                                         <div class="col-lg-2 col-md-2 col-sm-2 col-4">
                                             <input type="radio" name="select_song" value="${element.id}">
