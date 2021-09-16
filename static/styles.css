@@ -1,3 +1,5 @@
+
+/* Site Base Typography and Background Color */
 body {
     background: #ecf0f1;
     color: #2c3e50;
@@ -12,6 +14,8 @@ h1 {
 h2 {
     font-weight: 800;
 }
+
+/* Navbar Formatting */
  nav {
      background:#2ecc71;
      color: #ecf0f1;
@@ -28,6 +32,8 @@ h2 {
 .form-inline {
     font-size: 1em;
 }
+
+/* Responsive Design for Navbar Links */
 @media (max-width: 576px) { 
     .form-inline {
         font-size: .75em;
@@ -35,8 +41,9 @@ h2 {
     .navbar_links {
         font-size: .90em;
     }
-
 }
+
+/* Link Formatting */
  a {
      color: #1abc9c;
  }
@@ -49,19 +56,18 @@ h2 {
  .uppercase {
      text-transform: capitalize;
  }
+
 .post {
     border: 2px solid black; 
-    border-radius: 25px;
-    
+    border-radius: 25px;   
 }
 
-
-
+/* Existing and Create Post Styling */
 #music_comment {
-    width: 300px;
-    
+    width: 300px; 
 }
 
+/* Hide HTML Elements with "Hidden" Class */
 .hidden {
     display: none;
 }
@@ -78,6 +84,10 @@ h2 {
     align-self: flex-end;
     text-align: right;
     
+}
+
+.search_img {
+    padding-left: 1em;
 }
 
 /* Saved Post Styling */
@@ -100,6 +110,8 @@ h2 {
     margin: 0;
 }
 
+
+/* Button Formatting */
 .button {
     border-radius: 16px;
     background: #2ecc71;
@@ -139,29 +151,21 @@ h2 {
     font-weight: bold;
 }
 
+/* Format Input Text and Textarea */
 input[type=text] {
     border-radius: 16px;
     padding: 5px; 
-    outline: none;
-    
-    
+    outline: none;    
 }
 
 input[type=password] {
     border-radius: 16px;
     padding: 5px; 
-    outline: none;
-    
-    
+    outline: none;   
 }
 
 textarea {
     outline: none!important;
-    box-shadow: none!important;
-    
-    
+    box-shadow: none!important;    
 }
 
-.search_img {
-    padding-left: 1em;
-}
