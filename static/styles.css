@@ -122,3 +122,23 @@ h2 {
     background:#3498db;
     font-weight: bold;
 }
+
+input[type=text] {
+    border-radius: 16px;
+    padding: 5px; 
+    outline: none;
+    
+}
+
+input[type=password] {
+    border-radius: 16px;
+    padding: 5px; 
+    outline: none;
+    
+}
+
+textarea {
+    outline: none!important;
+    box-shadow: none!important;
+    
+}
