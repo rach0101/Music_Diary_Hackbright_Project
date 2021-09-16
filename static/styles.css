@@ -94,4 +94,31 @@ h2 {
 
 .button:hover {
     background: #e67e22;
+    font-weight: bold;
+}
+
+.basic_button {
+    border-radius: 12px; 
+    background: #2ecc71;
+    color:#ecf0f1;
+    border: none;
+    padding: 3;
+}
+
+.basic_button:hover {
+    background: #e67e22;
+    font-weight: bold;
+}
+
+.nav_button {
+    border-radius: 12px; 
+    background: #e67e22;
+    color:#ecf0f1;
+    border: none;
+    padding: 3; 
+}
+
+.nav_button:hover {
+    background:#3498db;
+    font-weight: bold;
 }
