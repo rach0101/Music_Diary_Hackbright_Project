@@ -172,18 +172,24 @@ $(document).ready(() => {
         $('#artist_url').val(post_song_data.artist_url);
     });
 
-    // add ajax request to delete post here
+    // Ajax request to delete post 
+    // Send post id to backend to delete from database
+    // retrieve post id from server backend and remove from
+    // HTML element on the frontend.
     $('.delete_post').on('submit', (event) => {
         event.preventDefault();
         const data = { "post_id": event.target.getAttribute('id') };
 
         $.post('/delete_post', data, (response) => {
-            console.log(`${response}`)
+            // Remove post by post id
             $(`#${response}`).remove();
         });
     });
     
-    // add event listener for like button
+    // Send Ajax post request on like form submit.
+    // Send post id to backend where like is created
+    // in the database and the total "like count" is 
+    // retrieved and updated on the frontend.
     $('.like_post').on('click', (event) => {
         event.preventDefault();
         const data = { "post_id": event.target.getAttribute('id') };
