@@ -5,10 +5,9 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import desc, and_
 
 # Create Users table
-def create_user(username, password, spotify_username, token):
+def create_user(username, password):
     
-    user = User(username=username, password=password, 
-                spotify_username=spotify_username, token=token)
+    user = User(username=username, password=password)
 
     db.session.add(user)
     db.session.commit()

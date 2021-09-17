@@ -33,13 +33,6 @@ class User(db.Model):
                          nullable=False, 
                          unique = False,)
 
-    spotify_username = db.Column(db.String(50), 
-                      nullable=False, 
-                      unique = True,)                     
-
-    token = db.Column(db.String(), 
-                      nullable=False, 
-                      unique = True,)  
 
     # create relationship between users and posts
 

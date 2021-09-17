@@ -118,10 +118,6 @@ def create_new_account():
     # from create_account.html forms
     username = request.form.get('username')
     password = request.form.get('password')
-    
-    # Generate random Spotify usernames and tokens
-    spotify_username = random.randint(100000, 999999999999999999999999)
-    token = random.randint(100000, 999999999999999999999999)
 
     # query database to see if user exists
     user = crud.get_user_by_username(username)
@@ -135,7 +131,7 @@ def create_new_account():
     
     #if user does not already exist, create a new user 
     else:
-        user = crud.create_user(username, password, str(spotify_username), str(token))
+        user = crud.create_user(username, password)
         flash("Account created, please log in")
         return redirect('/')
 
