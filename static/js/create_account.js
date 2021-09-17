@@ -6,7 +6,6 @@ $('#create_account').on('submit', (event) => {
         alert("Please fill in all of the required fields.");
         event.preventDefault();
     }
-
     else {
         $('#create_account').submit();
     }

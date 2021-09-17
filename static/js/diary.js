@@ -44,7 +44,6 @@ $(document).ready(() => {
 
                 for (const element of ordered_response[dict_key]['items']){
                     
-                    
                     if (dict_key == 'albums'){
 
                         // Add each album from search query to 
@@ -81,8 +80,7 @@ $(document).ready(() => {
                                         </div>        
                                     </label>  
                                 </div>
-                            </div>`);
-                        
+                            </div>`); 
                     }
                     else {
                         // Add each song from search query to 
@@ -120,14 +118,12 @@ $(document).ready(() => {
                     } 
                 };     
             };
-
             // Submit button to submit song or album selection for post.
             $('#list_of_search_results').append(`<div> 
                         <input class="button mb-3" type="submit" value="post music"> 
                         </div>`)
         });
-    });
-    
+    }); 
 
     $('#list_of_search_results').on('submit', (event) => {
         event.preventDefault();
@@ -142,7 +138,6 @@ $(document).ready(() => {
 
         // Remove submit button and search box from song search form
         $('#music_search_form').empty();
-
 
         // Lookup song info using song id from the serialized array
         let post_song_data = song_data[selected_song_id];
