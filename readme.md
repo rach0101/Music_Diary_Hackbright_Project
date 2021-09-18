@@ -59,19 +59,19 @@ Users can also delete their own posts. For now I have not implemented an edit po
 ## Files
 There are 4 main Python files for the project which I will walk through:
 
-Model.py:
+### Model.py:
 This is where the classes for data tables are created.
 
-Seed_Database.py
+### Seed_Database.py
 
 This file automates dropping databases, creating databases and creating all tables
 I think I am not really using this part of my project, but it could be useful for other developers who want to seed the database with test data before running. 
 
-Crud.py 
+### Crud.py 
 
 Create, Read, Update, Delete: The functions in the crud file are used to create rows for our data tables, update the database and delete data from the datatables.
 server.py
 
-Server.py 
+### Server.py 
 
 The server has all of the necessary routes to render HTML templates on the frontend, get data from the Spotify API and load the correct data onto user pages, log users in, create accounts and log users out. Also like and delete posts.
