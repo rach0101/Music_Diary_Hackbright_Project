@@ -25,9 +25,9 @@ touch secrets.sh
 ```
 Add the following code to your secrets.sh file. Once this is complete you are ready to use the app.
 
-export SPOTIPY_CLIENT_ID=”YOUR CLIENT ID HERE”
-export SPOTIPY_CLIENT_SECRET=”YOUR SECRET KEY HERE”
-export APP_KEY=”YOUR APP KEY HERE”
+export SPOTIPY_CLIENT_ID=”YOUR CLIENT ID HERE”  
+export SPOTIPY_CLIENT_SECRET=”YOUR SECRET KEY HERE”  
+export APP_KEY=”YOUR APP KEY HERE”  
 
 
 ## Usage
