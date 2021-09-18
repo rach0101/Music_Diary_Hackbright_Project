@@ -2,6 +2,8 @@
 
 Music Diary is a social networking app for people who love to listen to and share music with others.  With Music Diary, users can create an account, login and start posting about music. Each post is created using the Spotify API’s search query where a user selects a song or album, writes content about, then clicks post. Search for friends by username, like posts and use the clickable song, album and artist links to explore the musical taste of friends. I hope you enjoy using Music Diary, it was very fun to build.
 
+![alt-text](GIF/Music Diary Gif.gif)
+
 ## Installation
 
 First create a virtual environment and activate it.
