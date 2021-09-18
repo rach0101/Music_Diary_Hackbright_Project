@@ -14,29 +14,16 @@
             <p>Create Account Below</p>
 
             {% for message in get_flashed_messages() %}
-                    <p class="flash-message">     
-                        {{ message }}
-                    </p>
+                    <p class="flash-message">{{ message }}</p>
             {% endfor %}
 
             <form id="create_account" action="/create_new_account" method="POST"> 
-                
                 <p>
                     Username <input id="username" type="text" name="username">
                 </p>
-
                 <p>
                     Password <input id="password" type="password" name="password">
                 </p>
-
-                <p class="hidden">
-                    Spotify Username <input id="spotify_username" type="text" name="spotify_username">
-                </p>
-
-                <p class="hidden">
-                    Token <input id="token" type="text" name="token">
-                </p>
-
                 <p>
                     <input class="basic_button" type="submit">
                 </p>

@@ -26,23 +26,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Londrina+Outline&family=Monoton&family=Raleway:wght@100;300;600;800&family=Signika:wght@300;400;700&display=swap" rel="stylesheet">
-  
+
   <!-- CSS -->
   <link rel="stylesheet" href="/static/styles.css">
   
   {% block head %}{% endblock %}
-
 </head>
 
 <body>
-  
   <nav class="navbar navbar-expand-sm p-3 ">
- 
-      <div class="navbar-brand">Music Diary</div> 
-      {% block nav %}{% endblock %}
-   
+    <div class="navbar-brand">Music Diary</div> 
+    {% block nav %}{% endblock %}
   </nav>
-
 {% block body %}{% endblock %}
 </body>
 
