@@ -11,7 +11,6 @@ os.system('createdb diary')
 #Connect my app to db created
 model.connect_to_db(server.app)
 
-#Use models to create all of the tables
-#in the database
+#Use models to create all of the tables in the database
 model.db.create_all()
 

@@ -34,7 +34,7 @@ class User(db.Model):
                          unique = False,)
 
 
-    # create relationship between users and posts
+    # Create relationship between users and posts
 
     post = db.relationship("Post", backref="users")
 
@@ -54,7 +54,7 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
 
     date = db.Column(db.DateTime)
-    # updated and made this not a unique value
+    
     post_content = db.Column(db.String(200), 
                       nullable=False)  
 
