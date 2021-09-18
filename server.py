@@ -25,8 +25,7 @@ def home():
     return render_template('home.html')
 
 
-# Route to diary homepage where user can log in
-# or create an account
+# Route to diary homepage where user can log in or create an account
 @app.route('/login', methods=["POST"])
 def login_user():
     """Retrieve username and password from login page
@@ -79,7 +78,6 @@ def visit_profile(username):
             return redirect(f'/diary/{username}')
     
     posts = crud.get_posts_by_user_id(user_id)
-    
     return render_template('diary.html', posts = posts, username=username, read_write=read_write)
 
 
@@ -89,7 +87,6 @@ def logout_user():
     """Log user out"""
     
     session.clear()
-
     return redirect('/')
 
 
@@ -101,25 +98,23 @@ def create_account():
     return render_template('create_account.html')
 
 
-# Route that grabs new account data from form and
-# saves to the Users database as a new user
+# Route that grabs new account data from form and saves to the Users database as a new user
 @app.route('/create_new_account', methods=["POST"])
 def create_new_account():
     """When Form is Submitted Create a New Account"""
 
-    # Grab username, password, spotify_username and token 
-    # from create_account.html forms
+    # Grab username, password, spotify_username and token from create_account.html forms
     username = request.form.get('username')
     password = request.form.get('password')
-    # query database to see if user exists
+    # Query database to see if user exists
     user = crud.get_user_by_username(username)
     
     if username == "" or password == "":
         flash("Please complete all fields below.")
-    # if user exists flash message
+    # If user exists flash message
     elif user:
         flash("This account already exists")
-    #if user does not already exist, create a new user 
+    # If user does not already exist, create a new user 
     else:
         user = crud.create_user(username, password)
         flash("Account created, please log in")
@@ -139,20 +134,19 @@ def get_api_search():
    
     # Get form search content from 'name' key
     music_search = request.form.get('name')
-    # save results from Spotipy song search query as variable
+    # Save results from Spotipy song search query as variable
     results = sp.search(music_search, limit = 5, type="track,album")
     
-    # Return a json dictionary of album and track data. There will 
-    # be 5 albums and 5 tracks in the response object. Response 
-    # object will contain two keys: albums and tracks which will 
+    # Return a json dictionary of album and track data. There will be 5 albums and 5 tracks in the 
+    # response object. Response object will contain two keys: albums and tracks which will 
     # be iterated over on the frontend.
     return jsonify(results)
    
 
 # Create a route that grabs data form the create post form (form in the #music_comment div in diary.html)
-# and saves song data to database using crud.py
-# song data will be stored in hidden form inputs which have placeholder values that are updated in
-# diary.js. Then server uses get request to grab values from the input fields with the specified IDs.  
+# and saves song data to database using crud.py song data will be stored in hidden form inputs which 
+# have placeholder values that are updated in diary.js. Then server uses get request to grab values from 
+# the input fields with the specified IDs.  
 @app.route('/save_song_to_database', methods=['POST'])
 def save_post_to_database():
     """Grab selected item from search results and send to front end"""
@@ -188,12 +182,10 @@ def delete_post():
     post = crud.delete_user_post(session['user_id'], post_id)
     # Get username from session 
     username = session['username']
-    # Load all posts by user in session so that 
-    # selected post can be deleted from the HTML
+    # Load all posts by user in session so that selected post can be deleted from the HTML
     posts = crud.get_posts_by_user_id(session['user_id'])
 
-    # Send post_id to the front end so that the HTML 
-    # element can be removed.
+    # Send post_id to the front end so that the HTML element can be removed.
     return post_id
     
 
@@ -230,14 +222,11 @@ def add_like_to_post():
     # Create a like in the database using
     # the user id and post id.
     like = crud.create_like(user_id, post_id)
-    # Get list of all like objects in database 
-    # for the given post id. Count the length of 
-    # the list (total number of likes) and send to frontend
-    # as a dictionary.
+    # Get list of all like objects in database for the given post id. Count the length of 
+    # the list (total number of likes) and send to frontend as a dictionary.
     like_count = crud.get_likes_by_post_id(post_id)
 
-    return jsonify({"like_count": len(like_count),
-                     "post_id": post_id})
+    return jsonify({"like_count": len(like_count), "post_id": post_id})
 
 
 if __name__ == '__main__':
