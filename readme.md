@@ -1,6 +1,6 @@
 # Music Diary Hackbright Project:
 
-Music Diary is a social networking app for people who love to listen to and share music with others.  With Music Diary, users can create an account, login and start posting about music. Each post is created using the Spotify API’s search query where a user selects a song or album, writes content about, then clicks post. Search for friends by username, like posts and use the clickable song, album and artist links to explore the musical taste of friends. I hope you enjoy using Music Diary, it was very fun to build.
+Music Diary is a social networking app for people who love to listen to and share music with others.  With Music Diary, users can create an account, login and start posting about music. Each post is created using the Spotify API’s search query where a user selects a song or album, writes their reaction/reflection/feeling about the music, then clicks post. Search for friends by username, like posts and use the clickable song, album and artist links to explore the musical taste of friends. I hope you enjoy using Music Diary, it was very fun to build.
 
 ![alt-text](https://github.com/rach0101/Music_Diary_Hackbright_Project/blob/main/GIF/Music%20Diary%20Gif.gif)
 
@@ -61,19 +61,18 @@ Users can also delete their own posts. For now I have not implemented an edit po
 ## Files
 There are 4 main Python files for the project which I will walk through:
 
-### Model.py:
+### Model.py
 This is where the classes for data tables are created.
 
 ### Seed_Database.py
 
-This file automates dropping databases, creating databases and creating all tables
-I think I am not really using this part of my project, but it could be useful for other developers who want to seed the database with test data before running. 
+This file automates dropping databases, creating databases and creating all tables.
 
 ### Crud.py 
 
-Create, Read, Update, Delete: The functions in the crud file are used to create rows for our data tables, update the database and delete data from the datatables.
-server.py
+Create, Read, Update, Delete: The functions in the crud file are used to create rows for our data tables, update the database and delete data.
 
 ### Server.py 
 
-The server has all of the necessary routes to render HTML templates on the frontend, get data from the Spotify API and load the correct data onto user pages, log users in, create accounts and log users out. Also like and delete posts.
+The server has all of the necessary routes to render HTML templates on the frontend, get data from the Spotify API, load the correct data onto user pages, log users in, create accounts and log users out. Server.py also handles like and delete post 
+features.
