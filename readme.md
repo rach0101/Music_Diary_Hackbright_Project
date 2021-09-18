@@ -18,7 +18,7 @@ Required dependencies include: Flask, Flask-SQLAlchemy, psycopg2-binary, Flask-D
 pip-3 install -r requirements.txt
 ```
 
-You then will need to authenticate the Spotify API, I am using the Spotipy Python library to handle this. You will need to get a client ID, and Secret Key which I would recommend saving into a secrets.sh file. Go to [Spotify for Developers] (https://developer.spotify.com/) and follow the instructions to [register your app] (https://developer.spotify.com/documentation/general/guides/app-settings/#register-your-app). 
+You then will need to authenticate the Spotify API, I am using the [Spotipy Python library](https://spotipy.readthedocs.io/en/2.19.0/) to handle this. You will need to get a client ID, and Secret Key which I would recommend saving into a secrets.sh file. Go to [Spotify for Developers](https://developer.spotify.com/) and follow the instructions to [register your app](https://developer.spotify.com/documentation/general/guides/app-settings/#register-your-app). 
 
 ``` bash 
 touch secrets.sh 
