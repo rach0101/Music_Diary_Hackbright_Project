@@ -45,7 +45,7 @@ Create all of the tables for the database by running seed_database.py. You only 
 python3 seed_database.py
 ```
 
-and run the server
+Next run the server.
 
 ```bash
 python3 server.py
@@ -53,9 +53,9 @@ python3 server.py
 
 Once the server is running you can use the app. Go to the home route to create an account, login and begin to post. Search for a song or album, click post music, write something about it in the text box and click post. 
 
-Users can like their own posts and the posts of others. Search for others using the search bar at the top of the page. Make sure to search by username, other search queries will not render your friend’s page. If you want to go back to your Diary, click the My Diary link in the navbar, and click logout to log yourself out.
+Users can like their own posts and the posts of others. Search for others using the search bar at the top of the page. Make sure to search by username, other search queries will not render your friend’s page. If you want to go back to your diary, click the My Diary link in the navbar, and click logout to log yourself out.
 
-Users can also delete their own posts. For now I have not implemented an edit post feature, so if you make a mistake you will just have to delete and recreate your post.
+Users can also delete their own posts. For now I have not implemented an edit post feature, so if you make a mistake you will have to delete and recreate your post.
 
 ## Files
 There are 4 main Python files for the project which I will walk through:
