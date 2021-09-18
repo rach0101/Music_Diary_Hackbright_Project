@@ -48,7 +48,7 @@
     <div class="row"> 
         <div class="col-lg-8 col-md-8 col-sm-12">
             <div id="create_post" class="post p-3 mb-3">
-                <!-- create row to make nested columns -->
+                <!-- Create row to make nested columns -->
                 <div class="row"> 
                     <div id="song_data"> </div>
                     <div class="col-lg-4 col-md-4 col-sm-12">
@@ -59,9 +59,8 @@
                     </div>
                     <div class="col-lg-8 col-md-8 col-sm-12" id="populate_music_post"> 
                         <form id="submit_final_post" action="/save_song_to_database" method="POST"> 
-                            <!-- Hidden input fields below are updated in the diary.js file
-                            and are then used to send data from the selected song to the server
-                            so that the post can be created and added to the database. -->
+                            <!-- Hidden input fields below are updated in the diary.js file and are then used to send 
+                            data from the selected song to the server so that the post can be created and added to the database. -->
                             <input type="hidden" id="song_name" name="name" value="id">
                             <input type="hidden" id="song_url" name="url" value="id">
                             <input type="hidden" id="song_img" name="img" value="id">
@@ -82,18 +81,14 @@
     <div class="row"> 
         <div class="col-lg-8 col-md-8 col-sm-12 col-12">
             <form id="list_of_search_results">
-            <!-- Searh results HTML elemets are added in diary.js
-            data is populted from the Spoitify API search query results
-            object. -->
+            <!-- HTML elemets added in diary.js. Data is populted from the Spoitify API search query. -->
             </form>
         </div>
     </div>          
     {% endif %}
 
-    <!-- Display all posts from database by user id. 
-    Iterate over results from server.py which is a list
-    of post objects. For each user's post grab data below
-    and render on the frontend. -->
+    <!-- Display all posts from database by user id. Iterate over results from server.py which is a list
+    of post objects. For each user's post grab data below and render on the frontend. -->
     {% for post in posts %}
     <div class="row"> 
         <div class="col-lg-8 col-md-8 col-sm-12 col-12">
@@ -101,8 +96,7 @@
                 <div class="row"> 
                     <div class="col-lg-2 col-md-2 col-sm-2 col-3">
                         <img class="mb-3 music_img" src="{{post.music_img}}">
-                        <!-- Only include delete post function if user has
-                        read-write access -->
+                        <!-- Only include delete post function if user has read-write access -->
                         {% if read_write %}
                         <div>  
                             <form class="delete_post" id="{{post.post_id}}"> 
