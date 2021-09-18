@@ -34,8 +34,7 @@ export APP_KEY=”YOUR APP KEY HERE”
 
 ## Usage
 
-Then once you are set up and your virtual environment is activated, authenticate the Spotify   
-API.
+Once you are set up and your virtual environment is activated, authenticate the Spotify API.
 ``` bash
 source secrets.sh
 ```
