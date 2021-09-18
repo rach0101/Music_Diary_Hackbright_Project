@@ -1,15 +1,13 @@
 'use strict';
 
 $(document).ready(() => {
-    // Create an empty dictionary to help handle 
-    // song selection from search
+    // Create an empty dictionary to help handle song selection from search
     let song_data = {};
     
     // Event listener for submitting song search form in diary.html
     $('#music_search_form').on('submit', (event) => {
         
         event.preventDefault();
-        
         // Empty DOM of any old search results and refresh with new search
         $('#list_of_search_results').empty(); 
         
@@ -22,7 +20,7 @@ $(document).ready(() => {
         // Send data (key: value pair) to the server as a post request
         // and retrieve Spotify API response data from server
         $.post('/diary_api.json', data, (response) => {
-           
+
             // Create empty  search dict for saving 
             // data about a songs and albums that will be used in posts
             song_data = {};
@@ -67,7 +65,7 @@ $(document).ready(() => {
                         $('#list_of_search_results').append(
 
                             `<div class="radio_selection col-lg-12 col-md-12 col-sm-12 col-12 pb-3" id="select_song" value="${element.id}">
-                            <div class="row">
+                                <div class="row">
                                         <div class="col-lg-2 col-md-2 col-sm-2 col-4">   
                                             <input type="radio" name="select_song" value="${element.id}">
                                             <label id="${element.uri}" for="${element.name}"> 
@@ -83,8 +81,7 @@ $(document).ready(() => {
                             </div>`); 
                     }
                     else {
-                        // Add each song from search query to 
-                        // song_data dictionary.
+                        // Add each song from search query to song_data dictionary.
                         song_data[element.id] = {
                             'type': 'song',
                             'name': element.name,
@@ -95,9 +92,8 @@ $(document).ready(() => {
                             'artist_url': element.artists[0].external_urls.spotify
                         }
                         
-                        // For each song in the results dictionary, add HTML
-                        // shown below to frontend so user can see album title,
-                        // image and select by clicking radio button.
+                        // For each song in the results dictionary, add HTML shown below to frontend so user can 
+                        // see album title, image and select by clicking radio button.
                         $('#list_of_search_results').append(
                             // Set song ID to form input value            
                             `<div class="radio_selection col-lg-12 col-md-12 col-sm-12 col-12 pb-3" id="select_song" value="${element.id}">
@@ -167,10 +163,8 @@ $(document).ready(() => {
         $('#artist_url').val(post_song_data.artist_url);
     });
 
-    // Ajax request to delete post 
-    // Send post id to backend to delete from database
-    // retrieve post id from server backend and remove from
-    // HTML element on the frontend.
+    // Ajax request to delete post. Send post id to backend to delete from database
+    // retrieve post id from server backend and remove from HTML element on the frontend.
     $('.delete_post').on('submit', (event) => {
         event.preventDefault();
         const data = { "post_id": event.target.getAttribute('id') };
