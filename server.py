@@ -65,13 +65,13 @@ def visit_profile(username):
     user_id = None
 
     if read_write:
-        #Get user id and username from session
+        # Get user id and username from session
         user_id = session['user_id']   
     else: 
-        # get user by username
+        # Get user by username
         user = crud.get_user_by_username(username)
         if user != None:
-        # get user id
+        # Get user id
             user_id = user.user_id
         else: 
             username = session['username']
@@ -231,4 +231,4 @@ def add_like_to_post():
 
 if __name__ == '__main__':
     connect_to_db(app)
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0')
